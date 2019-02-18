@@ -7,7 +7,11 @@ const ArticleCard = ({ article }) => {
     <div>
       <Link to={`/articles/${article_id}`}>{article.title}</Link>
       <br />
-      {article.article_id} <br />
+      Votes: {article.votes} <br />
+      User: {article.author} <br />
+      Topic: {article.topic} <br />
+      Date: {article.created_at} <br />
+      Comments: {article.comment_count} <br />
     </div>
   );
 };

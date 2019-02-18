@@ -1,10 +1,20 @@
 import axios from 'axios';
 const BASE_URL = 'https://lc-news.herokuapp.com/api';
 
-export const fetchArticles = async topic => {
+const sortRefObj = {
+  latest: 'created_at',
+  comments: 'comment_count',
+  votes: 'votes'
+};
+
+export const fetchArticles = async ({ topic, category }) => {
+  let queryString = '';
+  if (category) {
+    queryString = `?sort_by=${sortRefObj[category]}`;
+  }
   const response = topic
-    ? await axios.get(`${BASE_URL}/topics/${topic}/articles`)
-    : await axios.get(`${BASE_URL}/articles`);
+    ? await axios.get(`${BASE_URL}/topics/${topic}/articles${queryString}`)
+    : await axios.get(`${BASE_URL}/articles${queryString}`);
   return response.data.articles;
 };
 

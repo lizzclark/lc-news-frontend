@@ -22,3 +22,10 @@ export const fetchArticle = async article_id => {
   const response = await axios.get(`${BASE_URL}/articles/${article_id}`);
   return response.data.article;
 };
+
+export const fetchComments = async article_id => {
+  const response = await axios.get(
+    `${BASE_URL}/articles/${article_id}/comments`
+  );
+  return response.data.comments;
+};

@@ -1,3 +1,29 @@
 .App {
   text-align: center;
+  display: grid;
+  height: 98vh;
+  border: 1px solid black;
+  grid-template-rows: 1fr 1fr 7.5fr 0.5fr;
+  grid-template-columns: 1fr;
+  grid-template-areas: 'header' 'nav' 'main' 'footer';
+}
+
+.header {
+  background: rgba(13, 13, 13, 0.1);
+  grid-area: header;
+}
+
+.nav {
+  background: rgba(200, 200, 200, 0.1);
+  grid-area: nav;
+}
+
+.main {
+  background: rgba(255, 27, 13, 0.1);
+  grid-area: main;
+}
+
+.footer {
+  background: rgba(13, 200, 200, 0.1);
+  grid-area: footer;
 }

@@ -16,11 +16,10 @@ class Articles extends Component {
 
   render() {
     const { articles } = this.state;
-    console.log('category is', this.state.category);
-    console.log(articles);
+    const { topic } = this.props;
     return (
       <>
-        <h2>Viewing all articles</h2>
+        <h2>Viewing all articles{topic && ` in ${topic}`}</h2>
 
         <div>
           Sort by: <SortButton category="latest" sortBy={this.sortBy} />
@@ -28,12 +27,15 @@ class Articles extends Component {
           <SortButton category="votes" sortBy={this.sortBy} />
         </div>
 
-        <p>Expanding box where you can post an article</p>
+        <p>
+          Expanding box where you can post an article <br />
+          {topic && `This should have the topic ${topic} auto selected`}
+        </p>
 
         {articles.length !== 0 ? (
           <Newspaper articles={articles} />
         ) : (
-          <div>Loading...</div>
+          <div>Loading articles...</div>
         )}
       </>
     );
@@ -41,8 +43,9 @@ class Articles extends Component {
 
   getArticles = () => {
     const { category } = this.state;
+    const { topic } = this.props;
     api
-      .fetchArticles({ category })
+      .fetchArticles({ category, topic })
       .then(articles => this.setState({ articles }));
   };
 

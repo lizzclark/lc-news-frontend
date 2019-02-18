@@ -10,7 +10,6 @@ class Articles extends Component {
   }
 
   render() {
-    console.log(this.state);
     const { articles } = this.state;
     return (
       <>

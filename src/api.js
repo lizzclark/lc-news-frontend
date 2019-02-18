@@ -5,3 +5,8 @@ export const fetchArticles = async () => {
   const response = await axios.get(`${BASE_URL}/articles`);
   return response.data.articles;
 };
+
+export const fetchTopics = async () => {
+  const response = await axios.get(`${BASE_URL}/topics`);
+  return response.data.topics;
+};

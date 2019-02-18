@@ -4,8 +4,9 @@ const CommentCard = ({ comment }) => {
   return (
     <div className="comment-card">
       <h3>{comment.author} said:</h3>
-      <br />
-      {comment.body}
+      <p>{comment.created_at}</p>
+      <p>{comment.body}</p>
+      <p>Votes: {comment.votes}</p>
     </div>
   );
 };

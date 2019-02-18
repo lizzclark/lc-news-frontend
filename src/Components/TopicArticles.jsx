@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import Newspaper from './Newspaper';
+import SortButton from './SortButton';
 
 class TopicArticles extends Component {
-  state = { articles: [] };
+  state = { articles: [], category: 'date' };
 
   componentDidMount() {
     this.getArticles();
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.category !== this.state.category) this.getArticles();
   }
 
   render() {
@@ -15,7 +20,11 @@ class TopicArticles extends Component {
     return (
       <>
         <h2>Viewing all articles for {topic}</h2>
-        <p>Buttons to toggle sort order</p>
+        <div>
+          Sort by: <SortButton category="latest" sortBy={this.sortBy} />
+          <SortButton category="comments" sortBy={this.sortBy} />
+          <SortButton category="votes" sortBy={this.sortBy} />
+        </div>{' '}
         <p>
           Expanding box where you can post an article - the topic we're in
           should be auto selected here
@@ -30,9 +39,15 @@ class TopicArticles extends Component {
   }
 
   getArticles = () => {
+    const { topic } = this.props;
+    const { category } = this.state;
     api
-      .fetchArticles(this.props.topic)
+      .fetchArticles({ topic, category })
       .then(articles => this.setState({ articles }));
+  };
+
+  sortBy = category => {
+    this.setState({ category });
   };
 }
 

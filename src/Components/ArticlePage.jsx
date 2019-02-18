@@ -14,7 +14,7 @@ class ArticlePage extends Component {
     const { article, comments } = this.state;
     return (
       <div className="article-page">
-        {article.title}
+        <h1>{article.title}</h1>
         <br />
         {article.body}
         {comments

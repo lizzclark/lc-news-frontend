@@ -2,8 +2,8 @@ import React from 'react';
 
 const CommentCard = ({ comment }) => {
   return (
-    <div>
-      {comment.author} said:
+    <div className="comment-card">
+      <h3>{comment.author} said:</h3>
       <br />
       {comment.body}
     </div>

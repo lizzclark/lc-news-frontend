@@ -10,3 +10,8 @@ export const fetchTopics = async () => {
   const response = await axios.get(`${BASE_URL}/topics`);
   return response.data.topics;
 };
+
+export const fetchUsers = async () => {
+  const response = await axios.get(`${BASE_URL}/users`);
+  return response.data.users;
+};

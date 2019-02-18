@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from '@reach/router';
 import * as api from '../api';
 
 class Topics extends Component {
@@ -9,9 +10,9 @@ class Topics extends Component {
   render() {
     const { topics } = this.state;
     return (
-      <div className="main">
+      <div>
         {topics.map(topic => (
-          <span>{topic.slug}</span>
+          <Link to={topic.slug}>{topic.slug}</Link>
         ))}
       </div>
     );

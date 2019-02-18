@@ -11,7 +11,7 @@ class Articles extends Component {
   render() {
     const { articles } = this.state;
     return (
-      <div className="main">
+      <div>
         Articles:
         {articles.map(article => (
           <div key={article.article_id}>{article.title}</div>

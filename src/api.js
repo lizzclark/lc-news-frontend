@@ -1,8 +1,10 @@
 import axios from 'axios';
 const BASE_URL = 'https://lc-news.herokuapp.com/api';
 
-export const fetchArticles = async () => {
-  const response = await axios.get(`${BASE_URL}/articles`);
+export const fetchArticles = async topic => {
+  const response = topic
+    ? await axios.get(`${BASE_URL}/topics/${topic}/articles`)
+    : await axios.get(`${BASE_URL}/articles`);
   return response.data.articles;
 };
 

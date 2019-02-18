@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api';
+import Newspaper from './Newspaper';
 
 class Articles extends Component {
   state = { articles: [] };
@@ -9,14 +10,19 @@ class Articles extends Component {
   }
 
   render() {
+    console.log(this.state);
     const { articles } = this.state;
     return (
-      <div>
-        Articles:
-        {articles.map(article => (
-          <div key={article.article_id}>{article.title}</div>
-        ))}
-      </div>
+      <>
+        <h2>Viewing all articles</h2>
+        <p>Buttons to toggle sort order</p>
+        <p>Expanding box where you can post an article</p>
+        {articles.length !== 0 ? (
+          <Newspaper articles={articles} />
+        ) : (
+          <div>Loading...</div>
+        )}
+      </>
     );
   }
 

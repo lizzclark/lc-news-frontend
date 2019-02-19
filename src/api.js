@@ -66,3 +66,10 @@ export const postComment = async ({ article_id, username, body }) => {
   );
   return response;
 };
+
+export const deleteComment = async ({ comment_id, article_id }) => {
+  const response = await axios.delete(
+    `${BASE_URL}/articles/${article_id}/comments/${comment_id}`
+  );
+  return response;
+};

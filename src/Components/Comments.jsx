@@ -37,7 +37,12 @@ class Comments extends Component {
           />
         )}
         {comments.map(comment => (
-          <CommentCard key={comment.comment_id} comment={comment} />
+          <CommentCard
+            key={comment.comment_id}
+            comment={comment}
+            user={user}
+            article_id={article_id}
+          />
         ))}
       </div>
     ) : (

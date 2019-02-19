@@ -1,0 +1,21 @@
+.comment-card {
+  background: rosybrown;
+  border: 1px solid orange;
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: 'userinfo body' '. body';
+  padding: 15px;
+}
+
+.comment-card .userinfo {
+  grid-area: userinfo;
+  padding: 5px;
+  border: 1px solid red;
+}
+
+.comment-card .body {
+  grid-area: body;
+  background-color: white;
+}

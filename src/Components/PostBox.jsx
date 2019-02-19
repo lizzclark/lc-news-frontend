@@ -3,11 +3,11 @@ import './PostBox.css';
 import * as api from '../api';
 
 class PostBox extends React.Component {
-  state = { title: '', topic: this.props.topic, body: '' };
+  state = { title: '', selectedTopic: this.props.topic, body: '' };
 
   render() {
-    const { topic, topics } = this.props;
-    const { title, body } = this.state;
+    const { topics } = this.props;
+    const { title, body, selectedTopic } = this.state;
     return (
       <form className="article-postbox" onSubmit={this.handleSubmit}>
         <label for="title">Title:</label>
@@ -19,7 +19,11 @@ class PostBox extends React.Component {
         />
         <br />
         <label for="topic">Topic:</label>
-        <select onChange={this.handleTopicInput} name="topic" value={topic}>
+        <select
+          onChange={this.handleTopicInput}
+          name="topic"
+          value={selectedTopic}
+        >
           {topics.map(topicObj => {
             return (
               <option key={topicObj.slug} name={topicObj.slug}>
@@ -41,9 +45,7 @@ class PostBox extends React.Component {
     this.setState({ title: target.value });
   };
   handleTopicInput = ({ target }) => {
-    console.log('topic input');
-    console.log(target.value);
-    this.setState({ topic: target.value });
+    this.setState({ selectedTopic: target.value });
   };
   handleBodyInput = ({ target }) => {
     this.setState({ body: target.value });
@@ -51,9 +53,9 @@ class PostBox extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { title, topic, body } = this.state;
+    const { title, body } = this.state;
+    const topic = this.state.selectedTopic;
     const { username } = this.props.user;
-    console.log(topic);
     return api
       .postArticle({ title, topic, body, username })
       .then(

@@ -26,20 +26,18 @@ class Articles extends Component {
       <>
         <h2>Viewing all articles{topic && ` in ${topic}`}</h2>
 
-        <div>
-          Sort by: <SortButton category="latest" sortBy={this.sortBy} />
-          <SortButton category="comments" sortBy={this.sortBy} />
-          <SortButton category="votes" sortBy={this.sortBy} />
-        </div>
+        <button onClick={this.handleClick}>
+          Post an article {displayPostBox ? '⬆' : '⬇'}
+        </button>
+        {displayPostBox && <PostBox article topic={topic} topics={topics} />}
 
         {articles.length !== 0 ? (
           <>
-            <button onClick={this.handleClick}>
-              Post an article {displayPostBox ? '⬆' : '⬇'}
-            </button>
-            {displayPostBox && (
-              <PostBox article topic={topic} topics={topics} />
-            )}
+            <div>
+              Sort by: <SortButton category="latest" sortBy={this.sortBy} />
+              <SortButton category="comments" sortBy={this.sortBy} />
+              <SortButton category="votes" sortBy={this.sortBy} />
+            </div>
             <Newspaper articles={articles} />
           </>
         ) : (

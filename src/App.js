@@ -14,8 +14,8 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <Nav user={user} logout={this.clearUser} />
         <Auth login={this.setUser} user={user}>
-          <Nav user={user} logout={this.clearUser} />
           <Main className="main" user={user} />
         </Auth>
         <Footer />

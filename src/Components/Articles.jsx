@@ -5,7 +5,7 @@ import SortButton from './SortButton';
 import PostBox from './PostBox';
 
 class Articles extends Component {
-  state = { articles: [], category: 'date', displayPostBox: false };
+  state = { articles: [], category: 'date', displayPostBox: false, topics: [] };
 
   componentDidMount() {
     this.getArticles();
@@ -20,7 +20,7 @@ class Articles extends Component {
   }
 
   render() {
-    const { articles, displayPostBox } = this.state;
+    const { articles, displayPostBox, topics } = this.state;
     const { topic } = this.props;
     return (
       <>
@@ -37,7 +37,9 @@ class Articles extends Component {
             <button onClick={this.handleClick}>
               Post an article {displayPostBox ? '⬆' : '⬇'}
             </button>
-            {displayPostBox && <PostBox article topic={topic} />}
+            {displayPostBox && (
+              <PostBox article topic={topic} topics={topics} />
+            )}
             <Newspaper articles={articles} />
           </>
         ) : (
@@ -60,12 +62,17 @@ class Articles extends Component {
   };
 
   handleClick = () => {
-    this.setState(prevState =>
-      prevState.displayPostBox
-        ? this.setState({ displayPostBox: false })
-        : this.setState({ displayPostBox: true })
-    );
+    if (!this.state.displayPostBox) {
+      api.fetchTopics().then(topics => {
+        this.setState(
+          {
+            displayPostBox: true,
+            topics
+          },
+          () => console.log('setting state....')
+        );
+      });
+    } else this.setState({ displayPostBox: false });
   };
 }
-
 export default Articles;

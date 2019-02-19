@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
+import './Nav.css';
 
 class Nav extends Component {
   render() {
@@ -7,10 +8,17 @@ class Nav extends Component {
     if (user.username) {
       return (
         <nav className="nav">
-          <span>Welcome, {user.name.split(' ')[0]}!</span>
-          <button onClick={this.handleClick}>Log out</button>
-          <Link to="/">Home</Link>
-          <Link to="/topics">Topics</Link>
+          <span>
+            Welcome,{' '}
+            <Link to={`/users/${user.username}`}>
+              {user.name.split(' ')[0]}
+            </Link>
+            {'! '}
+            <br />
+            <button onClick={this.handleClick}>Log out</button>
+          </span>
+          <Link to="/">Top articles</Link>
+          <Link to="/topics">Browse by topic</Link>
           <Link to="/users">Users</Link>
         </nav>
       );

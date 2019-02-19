@@ -10,8 +10,11 @@ class Comments extends Component {
     this.getComments();
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.article_id !== this.props.article_id) {
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.article_id !== this.props.article_id ||
+      prevState.displayCommentBox !== this.state.displayCommentBox
+    ) {
       this.getComments();
     }
   }
@@ -27,7 +30,11 @@ class Comments extends Component {
         </button>
 
         {displayCommentBox && (
-          <CommentPostBox article_id={article_id} user={user} />
+          <CommentPostBox
+            article_id={article_id}
+            user={user}
+            toggleCommentBox={this.handleClick}
+          />
         )}
         {comments.map(comment => (
           <CommentCard key={comment.comment_id} comment={comment} />

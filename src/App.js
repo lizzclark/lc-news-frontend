@@ -15,7 +15,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <Auth login={this.setUser} user={user}>
-          <Nav />
+          <Nav user={user} logout={this.clearUser} />
           <Main className="main" />
         </Auth>
         <Footer />
@@ -24,6 +24,9 @@ class App extends Component {
   }
   setUser = username => {
     api.fetchUser(username).then(user => this.setState({ user }));
+  };
+  clearUser = () => {
+    this.setState({ user: {} });
   };
 }
 

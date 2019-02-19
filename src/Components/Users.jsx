@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api';
-import { Link } from '@reach/router';
+import UserCard from './UserCard';
 
 class Users extends Component {
   state = { users: [] };
@@ -11,8 +11,9 @@ class Users extends Component {
     const { users } = this.state;
     return (
       <div>
-        {users.map(user => (
-          <Link to={user.username}>{user.name}</Link>
+        <h2>Users</h2>
+        {users.map(userObj => (
+          <UserCard key={userObj.username} user={userObj} />
         ))}
       </div>
     );

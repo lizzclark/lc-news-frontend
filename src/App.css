@@ -24,6 +24,11 @@
   overflow: auto;
 }
 
+.auth {
+  grid-area: main;
+  overflow: auto;
+}
+
 .footer {
   background: rgba(13, 200, 200, 0.1);
   grid-area: footer;

@@ -1,4 +1,5 @@
-.comment-postbox {
+.comment-postbox,
+.article-postbox {
   animation: dropdown 1s ease;
 }
 

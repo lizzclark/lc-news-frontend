@@ -1,5 +1,6 @@
 import React from 'react';
 import ArticleCard from './ArticleCard';
+import './Newspaper.css';
 
 const Newspaper = ({ articles, user }) => {
   return (

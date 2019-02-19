@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from '@reach/router';
+import './ArticleCard.css';
 
 class ArticleCard extends React.Component {
   render() {
@@ -14,13 +15,16 @@ class ArticleCard extends React.Component {
     } = this.props.article;
     const { username } = this.props.user;
     return (
-      <div>
+      <div className="article-card">
         <Link to={`/articles/${article_id}`}>{title}</Link>
         <br />
         by <Link to={`/users/${author}`}>{author}</Link> <br />
         in <Link to={`/topics/${topic}/`}>{topic}</Link> <br />
         Date: {created_at} <br />
-        {votes} votes <br />
+        <button>+</button>
+        {votes} votes
+        <button>-</button>
+        <br />
         <Link to={`/articles/${article_id}`}>{comment_count} comments</Link>
         <br />
         {username === author && (

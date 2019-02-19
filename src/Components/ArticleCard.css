@@ -1,0 +1,13 @@
+.article-card {
+  background: rgba(0, 10, 10, 0.1);
+  border: 1px solid red;
+  width: 95%;
+  margin: 15px;
+  padding: 5px;
+}
+
+@media all and (min-width: 600px) {
+  .article-card {
+    width: 40%;
+  }
+}

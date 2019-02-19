@@ -10,10 +10,17 @@ class CommentPostBox extends React.Component {
     console.log(this.state);
     return (
       <form className="comment-postbox" onSubmit={this.handleSubmit}>
-        <label for="body">Body:</label>
-        <textarea name="body" onChange={this.handleChange} value={body} />
+        <label for="body" className="body-label">
+          Comment:
+        </label>
+        <textarea
+          name="body"
+          onChange={this.handleChange}
+          value={body}
+          className="body"
+        />
         <br />
-        <button onClick={this.handleSubmit}>Submit</button>
+        <button onClick={this.handleSubmit}>Publish</button>
       </form>
     );
   }

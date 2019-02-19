@@ -6,6 +6,28 @@
   padding: 10px;
 }
 
+.comment-postbox {
+  display: grid;
+  grid-template-columns: 1fr 9fr 1fr;
+  grid-template-rows: 4fr 1fr;
+  grid-template-areas: 'body-label body .' '. submit .';
+}
+
+.comment-postbox button {
+  grid-area: submit;
+  width: 5em;
+}
+
+.comment-postbox .body-label {
+  grid-area: body-label;
+  text-align: right;
+  padding: 5px;
+}
+
+.comment-postbox .body {
+  grid-area: body;
+}
+
 .article-postbox {
   display: grid;
   grid-template-columns: 1fr 9fr 1fr;

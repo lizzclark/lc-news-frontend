@@ -13,7 +13,7 @@ const Main = () => {
       <Articles path="/topics/:topic" />
       <ArticlePage path="/articles/:article_id" />
       <Topics path="/topics" />
-      <Users path="/users" />
+      <Users path="/users" isLinked={true} />
       <UserPage path="/users/:username" />
     </Router>
   );

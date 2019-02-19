@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import UserCard from './UserCard';
+import './Users.css';
 
 class Users extends Component {
   state = { users: [] };
@@ -9,11 +10,11 @@ class Users extends Component {
   }
   render() {
     const { users } = this.state;
+    const { isLinked } = this.props;
     return (
-      <div>
-        <h2>Users</h2>
+      <div className="users">
         {users.map(userObj => (
-          <UserCard key={userObj.username} user={userObj} />
+          <UserCard key={userObj.username} user={userObj} isLinked={isLinked} />
         ))}
       </div>
     );

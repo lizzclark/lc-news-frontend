@@ -15,7 +15,7 @@ class Auth extends Component {
           <input type="text" name="username" onChange={this.handleChange} />
           <button onClick={this.handleSubmit}>Log in</button>
         </form>
-        {users ? <Users /> : 'Loading users...'}
+        {users ? <Users isLinked={false} /> : 'Loading users...'}
       </div>
     );
   }

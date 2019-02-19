@@ -1,0 +1,11 @@
+.usercard {
+  background: rgba(0, 10, 20, 0.5);
+  flex-basis: 20vw;
+  margin: 15px;
+  padding: 5px;
+}
+
+.usercard img {
+  width: 80%;
+  height: auto;
+}

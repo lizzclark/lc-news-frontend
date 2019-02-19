@@ -9,6 +9,12 @@ import * as api from './api';
 
 class App extends Component {
   state = { user: {} };
+
+  componentDidMount() {
+    const userString = localStorage.getItem('user');
+    const localUser = JSON.parse(userString);
+    this.setState({ user: localUser });
+  }
   render() {
     const { user } = this.state;
     return (

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import CommentCard from './CommentCard';
-import { Link, Router } from '@reach/router';
+import PostBox from './PostBox';
 
 class ArticlePage extends Component {
   state = { article: {}, comments: [], displayCommentBox: false };
@@ -17,16 +17,20 @@ class ArticlePage extends Component {
       <div className="article-page">
         <h1>{article.title}</h1>
         <article>{article.body}</article>
-        <div className="comments">
-          <h2>Comments</h2>
-          <button onClick={this.handleClick}>Post a comment</button>
-          {displayCommentBox && (
-            <div className="comment-box">I'm the comment box!</div>
-          )}
-          {comments
-            ? comments.map(comment => <CommentCard comment={comment} />)
-            : 'Loading comments...'}
-        </div>
+        {comments ? (
+          <div className="comments">
+            <h2>Comments</h2>
+            <button onClick={this.handleClick}>
+              Post a comment {displayCommentBox ? '⬆' : '⬇'}
+            </button>
+            {displayCommentBox && <PostBox comments />}
+            {comments.map(comment => (
+              <CommentCard comment={comment} />
+            ))}
+          </div>
+        ) : (
+          'Loading comments...'
+        )}
       </div>
     );
   }
@@ -42,7 +46,11 @@ class ArticlePage extends Component {
   };
 
   handleClick = () => {
-    this.setState({ displayCommentBox: true });
+    this.setState(prevState =>
+      prevState.displayCommentBox
+        ? this.setState({ displayCommentBox: false })
+        : this.setState({ displayCommentBox: true })
+    );
   };
 }
 

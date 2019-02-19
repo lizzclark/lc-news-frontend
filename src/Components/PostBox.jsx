@@ -56,13 +56,13 @@ class PostBox extends React.Component {
     const { title, body } = this.state;
     const topic = this.state.selectedTopic;
     const { username } = this.props.user;
+    const { togglePostBox } = this.props;
     return api
       .postArticle({ title, topic, body, username })
-      .then(
-        article =>
-          console.log(article) ||
-          this.setState({ title: '', body: '', topic: '' })
-      )
+      .then(res => {
+        togglePostBox();
+        return this.setState({ title: '', body: '', topic: '' });
+      })
       .catch(console.log);
   };
 }

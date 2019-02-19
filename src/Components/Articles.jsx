@@ -14,7 +14,8 @@ class Articles extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (
       prevState.category !== this.state.category ||
-      prevProps.topic !== this.props.topic
+      prevProps.topic !== this.props.topic ||
+      prevState.displayPostBox !== this.state.displayPostBox
     )
       this.getArticles();
   }
@@ -30,7 +31,12 @@ class Articles extends Component {
           Post an article {displayPostBox ? '⬆' : '⬇'}
         </button>
         {displayPostBox && (
-          <PostBox topic={topic} topics={topics} user={user} />
+          <PostBox
+            topic={topic}
+            topics={topics}
+            user={user}
+            togglePostBox={this.handleClick}
+          />
         )}
 
         {articles.length !== 0 ? (

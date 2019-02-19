@@ -5,12 +5,17 @@ import './CommentCard.css';
 class CommentCard extends React.Component {
   render() {
     const { comment, user } = this.props;
+    const dateString = new Date(comment.created_at).toString().slice(0, 25);
     return (
       <div className="comment-card">
         <div className="userinfo">
           <h3>{comment.author}</h3>
-          <p>{comment.created_at}</p>
-          <p>{comment.votes} votes</p>
+          <p>{dateString}</p>
+          <p>
+            <button>+</button>
+            {comment.votes} votes
+            <button>-</button>
+          </p>
           {user.username === comment.author && (
             <button onClick={() => this.handleClick(comment.comment_id)}>
               delete

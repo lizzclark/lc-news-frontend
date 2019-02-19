@@ -6,11 +6,11 @@ import ArticlePage from './ArticlePage';
 import UserPage from './UserPage';
 import { Router } from '@reach/router';
 
-const Main = () => {
+const Main = ({ user }) => {
   return (
     <Router className="main">
-      <Articles path="/" />
-      <Articles path="/topics/:topic" />
+      <Articles path="/" user={user} />
+      <Articles path="/topics/:topic" user={user} />
       <ArticlePage path="/articles/:article_id" />
       <Topics path="/topics" />
       <Users path="/users" isLinked={true} />

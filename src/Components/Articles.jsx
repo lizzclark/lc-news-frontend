@@ -21,7 +21,7 @@ class Articles extends Component {
 
   render() {
     const { articles, displayPostBox, topics } = this.state;
-    const { topic } = this.props;
+    const { topic, user } = this.props;
     return (
       <>
         <h2>Viewing all articles{topic && ` in ${topic}`}</h2>
@@ -29,7 +29,9 @@ class Articles extends Component {
         <button onClick={this.handleClick}>
           Post an article {displayPostBox ? '⬆' : '⬇'}
         </button>
-        {displayPostBox && <PostBox article topic={topic} topics={topics} />}
+        {displayPostBox && (
+          <PostBox topic={topic} topics={topics} user={user} />
+        )}
 
         {articles.length !== 0 ? (
           <>

@@ -49,3 +49,12 @@ export const fetchUser = async username => {
   const response = await axios.get(`${BASE_URL}/users/${username}`);
   return response.data.user;
 };
+
+export const postArticle = async ({ title, body, topic, username }) => {
+  const response = await axios.post(`${BASE_URL}/topics/${topic}/articles`, {
+    title,
+    body,
+    username
+  });
+  return response;
+};

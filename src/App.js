@@ -16,7 +16,7 @@ class App extends Component {
         <Header />
         <Auth login={this.setUser} user={user}>
           <Nav user={user} logout={this.clearUser} />
-          <Main className="main" />
+          <Main className="main" user={user} />
         </Auth>
         <Footer />
       </div>

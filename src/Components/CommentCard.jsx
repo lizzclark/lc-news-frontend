@@ -24,7 +24,9 @@ class CommentCard extends React.Component {
     api
       .deleteComment({ article_id, comment_id })
       .then(res =>
-        console.log('this is where we re-render the whole comments component')
+        console.log(
+          'this is where we need to re-render the whole comments component'
+        )
       );
   };
 }

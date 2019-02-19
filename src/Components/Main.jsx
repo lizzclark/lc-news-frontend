@@ -20,7 +20,7 @@ class Main extends React.Component {
         <ArticlePage path="/articles/:article_id" user={user} />
         <Topics path="/topics" />
         <Users path="/users" isLinked={true} />
-        <UserPage path="/users/:username" />
+        <UserPage path="/users/:username" user={user} />
       </Router>
     );
   }

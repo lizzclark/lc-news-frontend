@@ -10,15 +10,15 @@ class UserPage extends Component {
   }
   render() {
     const { articles, total_count } = this.state;
-    const { username } = this.props;
+    const { user } = this.props;
     return (
       <div>
-        <h1>Articles by {username}</h1>
+        <h1>Articles by {user.username}</h1>
         <p>
-          {username} has written {total_count} articles
+          {user.username} has written {total_count} articles
         </p>
         {articles.length !== 0 ? (
-          <Newspaper articles={articles} />
+          <Newspaper articles={articles} user={user} />
         ) : (
           'Loading...'
         )}

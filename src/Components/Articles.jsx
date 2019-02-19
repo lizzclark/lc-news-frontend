@@ -46,7 +46,7 @@ class Articles extends Component {
               <SortButton category="comments" sortBy={this.sortBy} />
               <SortButton category="votes" sortBy={this.sortBy} />
             </div>
-            <Newspaper articles={articles} />
+            <Newspaper articles={articles} user={user} />
           </>
         ) : (
           <div>Loading articles...</div>

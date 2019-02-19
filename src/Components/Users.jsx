@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api';
+import { Link } from '@reach/router';
 
 class Users extends Component {
   state = { users: [] };
@@ -11,7 +12,7 @@ class Users extends Component {
     return (
       <div>
         {users.map(user => (
-          <div>{user.name}</div>
+          <Link to={user.username}>{user.name}</Link>
         ))}
       </div>
     );

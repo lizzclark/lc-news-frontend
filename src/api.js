@@ -18,6 +18,11 @@ export const fetchArticles = async ({ topic, category }) => {
   return response.data.articles;
 };
 
+export const fetchUserArticles = async username => {
+  const response = await axios.get(`${BASE_URL}/users/${username}/articles`);
+  return response.data.articles;
+};
+
 export const fetchTopics = async () => {
   const response = await axios.get(`${BASE_URL}/topics`);
   return response.data.topics;

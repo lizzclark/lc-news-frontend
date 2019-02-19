@@ -56,5 +56,13 @@ export const postArticle = async ({ title, body, topic, username }) => {
     body,
     username
   });
+  return response.data;
+};
+
+export const postComment = async ({ article_id, username, body }) => {
+  const response = await axios.post(
+    `${BASE_URL}/articles/${article_id}/comments`,
+    { body, username }
+  );
   return response;
 };

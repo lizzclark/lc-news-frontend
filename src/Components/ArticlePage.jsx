@@ -11,11 +11,12 @@ class ArticlePage extends Component {
 
   render() {
     const { article } = this.state;
+    const { user } = this.props;
     return (
       <div className="article-page">
         <h1>{article.title}</h1>
         <article>{article.body}</article>
-        <Comments article_id={article.article_id} />
+        <Comments article_id={article.article_id} user={user} />
       </div>
     );
   }

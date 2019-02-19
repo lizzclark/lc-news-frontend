@@ -18,7 +18,7 @@ class Comments extends Component {
 
   render() {
     const { comments, displayCommentBox } = this.state;
-    const { article_id } = this.props;
+    const { article_id, user } = this.props;
     return comments ? (
       <div className="comments">
         <h2>Comments</h2>
@@ -26,7 +26,9 @@ class Comments extends Component {
           Post a comment {displayCommentBox ? '⬆' : '⬇'}
         </button>
 
-        {displayCommentBox && <CommentPostBox article_id={article_id} />}
+        {displayCommentBox && (
+          <CommentPostBox article_id={article_id} user={user} />
+        )}
         {comments.map(comment => (
           <CommentCard key={comment.comment_id} comment={comment} />
         ))}

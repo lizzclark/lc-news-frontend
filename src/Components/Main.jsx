@@ -17,7 +17,7 @@ class Main extends React.Component {
       <Router className="main">
         <Articles path="/" user={user} />
         <Articles path="/topics/:topic" user={user} />
-        <ArticlePage path="/articles/:article_id" />
+        <ArticlePage path="/articles/:article_id" user={user} />
         <Topics path="/topics" />
         <Users path="/users" isLinked={true} />
         <UserPage path="/users/:username" />

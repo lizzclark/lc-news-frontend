@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import CommentCard from './CommentCard';
+import { Link, Router } from '@reach/router';
 
 class ArticlePage extends Component {
-  state = { article: {}, comments: [] };
+  state = { article: {}, comments: [], displayCommentBox: false };
 
   componentDidMount() {
     this.getArticle();
@@ -11,15 +12,21 @@ class ArticlePage extends Component {
   }
 
   render() {
-    const { article, comments } = this.state;
+    const { article, comments, displayCommentBox } = this.state;
     return (
       <div className="article-page">
         <h1>{article.title}</h1>
-        <br />
-        {article.body}
-        {comments
-          ? comments.map(comment => <CommentCard comment={comment} />)
-          : 'Loading comments...'}
+        <article>{article.body}</article>
+        <div className="comments">
+          <h2>Comments</h2>
+          <button onClick={this.handleClick}>Post a comment</button>
+          {displayCommentBox && (
+            <div className="comment-box">I'm the comment box!</div>
+          )}
+          {comments
+            ? comments.map(comment => <CommentCard comment={comment} />)
+            : 'Loading comments...'}
+        </div>
       </div>
     );
   }
@@ -32,6 +39,10 @@ class ArticlePage extends Component {
   getComments = () => {
     const { article_id } = this.props;
     api.fetchComments(article_id).then(comments => this.setState({ comments }));
+  };
+
+  handleClick = () => {
+    this.setState({ displayCommentBox: true });
   };
 }
 

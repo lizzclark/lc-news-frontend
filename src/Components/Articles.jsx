@@ -10,8 +10,12 @@ class Articles extends Component {
     this.getArticles();
   }
 
-  componentDidUpdate(_, prevState) {
-    if (prevState.category !== this.state.category) this.getArticles();
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.category !== this.state.category ||
+      prevProps.topic !== this.props.topic
+    )
+      this.getArticles();
   }
 
   render() {

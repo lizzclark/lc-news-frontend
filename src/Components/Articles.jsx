@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import * as api from '../api';
 import Newspaper from './Newspaper';
 import SortButton from './SortButton';
+import PostBox from './PostBox';
 
 class Articles extends Component {
-  state = { articles: [], category: 'date' };
+  state = { articles: [], category: 'date', displayPostBox: false };
 
   componentDidMount() {
     this.getArticles();
@@ -19,7 +20,7 @@ class Articles extends Component {
   }
 
   render() {
-    const { articles } = this.state;
+    const { articles, displayPostBox } = this.state;
     const { topic } = this.props;
     return (
       <>
@@ -31,13 +32,14 @@ class Articles extends Component {
           <SortButton category="votes" sortBy={this.sortBy} />
         </div>
 
-        <p>
-          Expanding box where you can post an article <br />
-          {topic && `This should have the topic ${topic} auto selected`}
-        </p>
-
         {articles.length !== 0 ? (
-          <Newspaper articles={articles} />
+          <>
+            <button onClick={this.handleClick}>
+              Post an article {displayPostBox ? '⬆' : '⬇'}
+            </button>
+            {displayPostBox && <PostBox article topic={topic} />}
+            <Newspaper articles={articles} />
+          </>
         ) : (
           <div>Loading articles...</div>
         )}
@@ -55,6 +57,14 @@ class Articles extends Component {
 
   sortBy = category => {
     this.setState({ category });
+  };
+
+  handleClick = () => {
+    this.setState(prevState =>
+      prevState.displayPostBox
+        ? this.setState({ displayPostBox: false })
+        : this.setState({ displayPostBox: true })
+    );
   };
 }
 

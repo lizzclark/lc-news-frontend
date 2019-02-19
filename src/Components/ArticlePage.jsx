@@ -23,7 +23,7 @@ class ArticlePage extends Component {
             <button onClick={this.handleClick}>
               Post a comment {displayCommentBox ? '⬆' : '⬇'}
             </button>
-            {displayCommentBox && <PostBox comments />}
+            {displayCommentBox && <PostBox comment />}
             {comments.map(comment => (
               <CommentCard comment={comment} />
             ))}

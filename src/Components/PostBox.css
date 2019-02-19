@@ -1,6 +1,51 @@
 .comment-postbox,
 .article-postbox {
-  animation: dropdown 1s ease;
+  animation: dropdown 0.5s ease;
+  border: 1px solid gray;
+  background: rgba(1, 1, 1, 0.1);
+  padding: 10px;
+}
+
+.article-postbox {
+  display: grid;
+  grid-template-columns: 1fr 9fr 1fr;
+  grid-template-rows: 1fr 1fr 4fr 1fr;
+  grid-template-areas: 'title-label title .' 'topic-label select .' 'body-label body .' '. submit .';
+}
+
+.article-postbox .title {
+  grid-area: title;
+}
+
+.article-postbox .body {
+  grid-area: body;
+}
+
+.article-postbox .title-label {
+  grid-area: title-label;
+  text-align: right;
+  padding: 5px;
+}
+
+.article-postbox .topic-label {
+  grid-area: topic-label;
+  text-align: right;
+  padding: 5px;
+}
+
+.article-postbox .body-label {
+  grid-area: body-label;
+  text-align: right;
+  padding: 5px;
+}
+
+.article-postbox select {
+  grid-area: select;
+  width: 12em;
+}
+.article-postbox button {
+  grid-area: submit;
+  width: 5em;
 }
 
 @keyframes dropdown {

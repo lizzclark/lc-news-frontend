@@ -16,7 +16,9 @@ class ArticleCard extends React.Component {
     const { username } = this.props.user;
     return (
       <div className="article-card">
-        <Link to={`/articles/${article_id}`}>{title}</Link>
+        <Link to={`/articles/${article_id}`}>
+          <h2>{title}</h2>
+        </Link>
         <br />
         by <Link to={`/users/${author}`}>{author}</Link> <br />
         in <Link to={`/topics/${topic}/`}>{topic}</Link> <br />
@@ -30,7 +32,6 @@ class ArticleCard extends React.Component {
         {username === author && (
           <button onClick={this.handleClick}>Delete this article</button>
         )}
-        <hr />
       </div>
     );
   }

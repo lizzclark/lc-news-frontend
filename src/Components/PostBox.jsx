@@ -10,15 +10,20 @@ class PostBox extends React.Component {
     const { title, body, selectedTopic } = this.state;
     return (
       <form className="article-postbox" onSubmit={this.handleSubmit}>
-        <label for="title">Title:</label>
+        <label for="title" className="title-label">
+          Title:
+        </label>
         <input
           onChange={this.handleTitleInput}
           type="text"
           name="title"
+          className="title"
           value={title}
         />
         <br />
-        <label for="topic">Topic:</label>
+        <label for="topic" className="topic-label">
+          Topic:
+        </label>
         <select
           onChange={this.handleTopicInput}
           name="topic"
@@ -33,10 +38,17 @@ class PostBox extends React.Component {
           })}
         </select>
         <br />
-        <label for="body">Body:</label>
-        <textarea onChange={this.handleBodyInput} name="body" value={body} />
+        <label for="body" className="body-label">
+          Body:
+        </label>
+        <textarea
+          onChange={this.handleBodyInput}
+          name="body"
+          className="body"
+          value={body}
+        />
         <br />
-        <button>Submit</button>
+        <button>Publish</button>
       </form>
     );
   }

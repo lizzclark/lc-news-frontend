@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CommentCard from './CommentCard';
-import PostBox from './PostBox';
+import CommentPostBox from './CommentPostBox';
 import * as api from '../api';
 
 class Comments extends Component {
@@ -18,6 +18,7 @@ class Comments extends Component {
 
   render() {
     const { comments, displayCommentBox } = this.state;
+    const { article_id } = this.props;
     return comments ? (
       <div className="comments">
         <h2>Comments</h2>
@@ -25,7 +26,7 @@ class Comments extends Component {
           Post a comment {displayCommentBox ? '⬆' : '⬇'}
         </button>
 
-        {displayCommentBox && <PostBox comment />}
+        {displayCommentBox && <CommentPostBox article_id={article_id} />}
         {comments.map(comment => (
           <CommentCard key={comment.comment_id} comment={comment} />
         ))}

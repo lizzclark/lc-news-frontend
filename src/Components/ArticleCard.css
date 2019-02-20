@@ -1,8 +1,11 @@
 .article-card {
-  background: rgba(0, 10, 10, 0.1);
-  border: 1px solid red;
+  background: var(--vanilla);
   width: 95%;
   margin: 15px;
+  padding: 10px;
+}
+
+.article-card h2 {
   padding: 5px;
 }
 

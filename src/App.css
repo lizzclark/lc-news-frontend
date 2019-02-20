@@ -1,25 +1,46 @@
+:root {
+  --pistachio: #d9f1c9;
+  --vanilla: #fff0af;
+  --bg-colour: #ffffff;
+  --header-colour: #f0d1d6;
+  --nav-colour: #e9d1c4;
+  --main-colour: var(--pistachio);
+  --footer-colour: #f0d1d6;
+  --menu-text-colour: black;
+  --link-colour: black;
+}
+
+body {
+  background: var(--bg-colour);
+}
+
+a {
+  color: var(--link-colour);
+}
+
 .App {
   text-align: center;
   display: grid;
   height: 98vh;
-  border: 1px solid black;
   grid-template-rows: 1fr 0.5fr 7.5fr 0.5fr;
   grid-template-columns: 1fr;
   grid-template-areas: 'header' 'nav' 'main' 'footer';
 }
 
 .header {
-  background: rgba(13, 13, 13, 0.1);
+  background: var(--header-colour);
+  color: var(--menu-text-colour);
   grid-area: header;
 }
 
 .nav {
-  background: rgba(200, 200, 200, 0.1);
+  background: var(--nav-colour);
+  color: var(--menu-text-colour);
   grid-area: nav;
 }
 
 .main {
-  background: rgba(255, 27, 13, 0.1);
+  background: var(--main-colour);
   grid-area: main;
   overflow: auto;
 }
@@ -30,6 +51,8 @@
 }
 
 .footer {
-  background: rgba(13, 200, 200, 0.1);
+  background: var(--footer-colour);
+  color: var(--menu-text-colour);
+
   grid-area: footer;
 }

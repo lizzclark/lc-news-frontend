@@ -37,14 +37,18 @@ class Comments extends Component {
             toggleCommentBox={this.handleClick}
           />
         )}
-        {comments.map(comment => (
-          <CommentCard
-            key={comment.comment_id}
-            comment={comment}
-            user={user}
-            article_id={article_id}
-          />
-        ))}
+        {comments.length > 0 &&
+          comments.map(comment => (
+            <CommentCard
+              key={comment.comment_id}
+              comment={comment}
+              user={user}
+              article_id={article_id}
+            />
+          ))}
+        {comments.length === 0 && isLoading === false && (
+          <p>No comments yet.</p>
+        )}
       </div>
     );
   }
@@ -58,9 +62,12 @@ class Comments extends Component {
   };
 
   fetchComments = () => {
-    return api.getComments(this.props.article_id).then(comments => {
-      this.setState({ comments, isLoading: false });
-    });
+    return api
+      .getComments(this.props.article_id)
+      .then(comments => {
+        this.setState({ comments, isLoading: false });
+      })
+      .catch(err => this.setState({ comments: [], isLoading: false }));
   };
 }
 

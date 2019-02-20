@@ -3,7 +3,10 @@ import * as api from '../api';
 import './CommentCard.css';
 
 class CommentCard extends React.Component {
+  state = { isDeleted: false };
   render() {
+    const { isDeleted } = this.state;
+    if (isDeleted) return null;
     const { comment, user } = this.props;
     const dateString = new Date(comment.created_at).toString().slice(0, 25);
     return (
@@ -31,11 +34,7 @@ class CommentCard extends React.Component {
     const { article_id } = this.props;
     api
       .deleteComment({ article_id, comment_id })
-      .then(res =>
-        console.log(
-          'this is where we need to re-render the whole comments component'
-        )
-      );
+      .then(res => this.setState({ isDeleted: true }));
   };
 }
 

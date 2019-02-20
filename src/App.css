@@ -18,8 +18,8 @@ a {
   color: var(--link-colour);
 }
 
-.comment-card .deleted {
-  background: red;
+a:hover {
+  text-decoration: none;
 }
 
 .App {
@@ -57,14 +57,22 @@ a {
 .sidebar {
   grid-area: userbar;
   display: flex;
+  flex-flow: row nowrap;
   justify-content: space-evenly;
-  align-items: baseline;
+  align-items: center;
+}
+
+.sidebar .logout {
+  height: 30px;
+  width: 70px;
 }
 
 .sidebar img {
-  height: 30px;
-  width: 30px;
+  height: 50px;
+  width: auto;
+  margin: auto;
 }
+
 .sidebar .lg-screen-hide {
   display: none;
 }
@@ -84,16 +92,18 @@ a {
   }
   .sidebar {
     grid-area: sidebar;
-    flex-direction: column;
+    display: flex;
+    flex-flow: column nowrap;
     justify-content: start;
-    align-items: baseline;
+    align-items: start;
   }
 
   .sidebar .lg-screen-hide {
     display: block;
   }
   .sidebar img {
+    width: 200px;
     height: auto;
-    width: auto;
+    margin: 0px;
   }
 }

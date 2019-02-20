@@ -1,8 +1,6 @@
 .comment-postbox,
 .article-postbox {
   animation: dropdown 0.5s ease;
-  border: 1px solid gray;
-  background: rgba(1, 1, 1, 0.1);
   padding: 10px;
 }
 
@@ -79,4 +77,38 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.topic-postbox {
+  width: 80%;
+  display: grid;
+  grid-template-rows: 1fr 1.5fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-areas: 'slug-label slug .' 'desc-label desc .' '. button .';
+}
+
+.topic-postbox .slug {
+  grid-area: slug;
+  width: 40%;
+}
+
+.topic-postbox .slug-label {
+  grid-area: slug-label;
+  text-align: right;
+  padding: 5px;
+}
+
+.topic-postbox .desc {
+  grid-area: desc;
+}
+
+.topic-postbox .desc-label {
+  grid-area: desc-label;
+  text-align: right;
+  padding: 5px;
+}
+
+.topic-postbox button {
+  grid-area: button;
+  width: 45px;
 }

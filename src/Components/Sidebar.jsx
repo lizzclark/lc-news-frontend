@@ -4,13 +4,15 @@ import { Link } from '@reach/router';
 const Sidebar = ({ logout, user: { username, name, avatar_url } }) => {
   return (
     <section className="sidebar">
-      <span>
+      <p className="lg-screen-hide">
         Welcome, <Link to={`/users/${username}`}>{name.split(' ')[0]}</Link>
-      </span>
+      </p>
       <img src={`${avatar_url}`} alt="your avatar" />
-      <h1 className="lg-screen-hide">{username}</h1>
-      <h2 className="lg-screen-hide">{name}</h2>
-      <button onClick={logout}>Log out</button>
+      <p className="lg-screen-hide">{username}</p>
+      <p className="lg-screen-hide">{name}</p>
+      <button onClick={logout} className="logout">
+        Log out
+      </button>
     </section>
   );
 };

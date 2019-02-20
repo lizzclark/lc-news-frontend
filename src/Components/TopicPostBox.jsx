@@ -43,10 +43,11 @@ class TopicPostBox extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     const { slug, description } = this.state;
-    return api
+    api
       .postTopic({ slug, description })
       .then(res => console.log(res))
       .catch(console.log);
+    this.setState({ slug: '', description: '' });
   };
 }
 

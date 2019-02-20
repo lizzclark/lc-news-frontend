@@ -3,12 +3,13 @@ import { Link } from '@reach/router';
 import * as api from '../api';
 
 class Topics extends Component {
-  state = { topics: [] };
+  state = { topics: [], isLoading: true };
   componentDidMount() {
     this.fetchTopics();
   }
   render() {
-    const { topics } = this.state;
+    const { topics, isLoading } = this.state;
+    if (isLoading) return <h2>Loading topics...</h2>;
     return (
       <div>
         {topics.map(topic => (
@@ -19,7 +20,7 @@ class Topics extends Component {
   }
 
   fetchTopics = () => {
-    api.getTopics().then(topics => this.setState({ topics }));
+    api.getTopics().then(topics => this.setState({ topics, isLoading: false }));
   };
 }
 

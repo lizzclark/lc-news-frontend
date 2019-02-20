@@ -5,7 +5,13 @@ import SortButton from './SortButton';
 import PostBox from './PostBox';
 
 class Articles extends Component {
-  state = { articles: [], category: 'date', displayPostBox: false, topics: [] };
+  state = {
+    articles: [],
+    category: 'date',
+    displayPostBox: false,
+    topics: [],
+    isLoading: true
+  };
 
   componentDidMount() {
     this.fetchArticles();
@@ -21,8 +27,9 @@ class Articles extends Component {
   }
 
   render() {
-    const { articles, displayPostBox, topics } = this.state;
+    const { articles, displayPostBox, topics, isLoading } = this.state;
     const { topic, user } = this.props;
+    console.log('rendering...');
     return (
       <>
         <h2>Viewing all articles{topic && ` in ${topic}`}</h2>
@@ -39,7 +46,7 @@ class Articles extends Component {
           />
         )}
 
-        {articles.length !== 0 ? (
+        {!isLoading ? (
           <>
             <div>
               Sort by: <SortButton category="latest" sortBy={this.sortBy} />
@@ -49,7 +56,7 @@ class Articles extends Component {
             <Newspaper articles={articles} user={user} />
           </>
         ) : (
-          <div>Loading articles...</div>
+          <h2>Loading articles...</h2>
         )}
       </>
     );
@@ -60,7 +67,7 @@ class Articles extends Component {
     const { topic } = this.props;
     api
       .getArticles({ category, topic })
-      .then(articles => this.setState({ articles }));
+      .then(articles => this.setState({ articles, isLoading: false }));
   };
 
   sortBy = category => {

@@ -3,14 +3,15 @@ import * as api from '../api';
 import Newspaper from './Newspaper';
 
 class UserPage extends Component {
-  state = { articles: [], total_count: 0 };
+  state = { articles: [], total_count: 0, isLoading: true };
 
   componentDidMount() {
     this.fetchUserArticles();
   }
   render() {
-    const { articles, total_count } = this.state;
+    const { articles, total_count, isLoading } = this.state;
     const { user } = this.props;
+    if (isLoading) return <h2>Loading articles...</h2>;
     return (
       <div>
         <h1>Articles by {user.username}</h1>
@@ -30,7 +31,7 @@ class UserPage extends Component {
     api
       .getUserArticles(username)
       .then(({ articles, total_count }) =>
-        this.setState({ articles, total_count })
+        this.setState({ articles, total_count, isLoading: false })
       );
   };
 }

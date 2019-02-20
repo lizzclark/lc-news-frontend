@@ -4,7 +4,7 @@ import CommentPostBox from './CommentPostBox';
 import * as api from '../api';
 
 class Comments extends Component {
-  state = { comments: [], displayCommentBox: false };
+  state = { comments: [], displayCommentBox: false, isLoading: true };
 
   componentDidMount() {
     this.fetchComments();
@@ -20,9 +20,10 @@ class Comments extends Component {
   }
 
   render() {
-    const { comments, displayCommentBox } = this.state;
+    const { comments, displayCommentBox, isLoading } = this.state;
     const { article_id, user } = this.props;
-    return comments ? (
+    if (isLoading) return <h2>Loading comments...</h2>;
+    return (
       <div className="comments">
         <h2>Comments</h2>
         <button onClick={this.handleClick}>
@@ -45,8 +46,6 @@ class Comments extends Component {
           />
         ))}
       </div>
-    ) : (
-      <p>'Loading...'</p>
     );
   }
 
@@ -60,7 +59,7 @@ class Comments extends Component {
 
   fetchComments = () => {
     return api.getComments(this.props.article_id).then(comments => {
-      this.setState({ comments });
+      this.setState({ comments, isLoading: false });
     });
   };
 }

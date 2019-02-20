@@ -4,13 +4,19 @@ import UserCard from './UserCard';
 import './Users.css';
 
 class Users extends Component {
-  state = { users: [] };
+  state = { users: [], isLoading: true };
   componentDidMount() {
     this.fetchUsers();
   }
   render() {
-    const { users } = this.state;
+    const { users, isLoading } = this.state;
     const { isLinked } = this.props;
+    if (isLoading)
+      return (
+        <div className="users">
+          <h2>Loading users...</h2>
+        </div>
+      );
     return (
       <div className="users">
         {users.map(userObj => (
@@ -20,7 +26,7 @@ class Users extends Component {
     );
   }
   fetchUsers = () => {
-    api.getUsers().then(users => this.setState({ users }));
+    api.getUsers().then(users => this.setState({ users, isLoading: false }));
   };
 }
 

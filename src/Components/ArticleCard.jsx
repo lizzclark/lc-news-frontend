@@ -4,6 +4,7 @@ import './ArticleCard.css';
 import * as api from '../api';
 
 class ArticleCard extends React.Component {
+  state = { isDeleted: false };
   render() {
     const {
       article_id,
@@ -15,6 +16,8 @@ class ArticleCard extends React.Component {
       votes
     } = this.props.article;
     const { username } = this.props.user;
+    const { isDeleted } = this.state;
+    if (isDeleted) return null;
     return (
       <div className="article-card">
         <Link to={`/articles/${article_id}`}>
@@ -38,7 +41,9 @@ class ArticleCard extends React.Component {
   }
   handleClick = () => {
     const { article_id } = this.props.article;
-    api.deleteArticle({ article_id });
+    api
+      .deleteArticle({ article_id })
+      .then(res => this.setState({ isDeleted: true }));
   };
 }
 

@@ -77,3 +77,15 @@ export const deleteArticle = async ({ article_id }) => {
   const response = await request.delete(`/articles/${article_id}`);
   return response;
 };
+
+export const patchArticle = async ({ article_id, inc_votes }) => {
+  const response = await request.patch(`/articles/${article_id}`, {
+    inc_votes
+  });
+  return response;
+};
+
+export const postTopic = async ({ slug, description }) => {
+  const response = await request.post(`/topics`, { slug, description });
+  return response;
+};

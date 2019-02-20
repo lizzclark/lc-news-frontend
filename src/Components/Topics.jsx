@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
+import TopicPostBox from './TopicPostBox';
 import * as api from '../api';
 
 class Topics extends Component {
@@ -15,6 +16,7 @@ class Topics extends Component {
         {topics.map(topic => (
           <Link to={topic.slug}>{topic.slug}</Link>
         ))}
+        <TopicPostBox />
       </div>
     );
   }

@@ -5,6 +5,7 @@ import Nav from './Components/Nav.jsx';
 import Main from './Components/Main.jsx';
 import Footer from './Components/Footer.jsx';
 import Auth from './Components/Auth';
+import Sidebar from './Components/Sidebar';
 import * as api from './api';
 
 class App extends Component {
@@ -20,9 +21,10 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Nav user={user} logout={this.clearUser} />
+        <Nav user={user} />
         <Auth login={this.setUser} user={user}>
           <Main className="main" user={user} />
+          <Sidebar user={user} logout={this.clearUser} />
         </Auth>
         <Footer />
       </div>

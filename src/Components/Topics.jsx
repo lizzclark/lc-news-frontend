@@ -5,7 +5,7 @@ import * as api from '../api';
 class Topics extends Component {
   state = { topics: [] };
   componentDidMount() {
-    this.getTopics();
+    this.fetchTopics();
   }
   render() {
     const { topics } = this.state;
@@ -18,8 +18,8 @@ class Topics extends Component {
     );
   }
 
-  getTopics = () => {
-    api.fetchTopics().then(topics => this.setState({ topics }));
+  fetchTopics = () => {
+    api.getTopics().then(topics => this.setState({ topics }));
   };
 }
 

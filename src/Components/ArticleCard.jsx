@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 import './ArticleCard.css';
+import * as api from '../api';
 
 class ArticleCard extends React.Component {
   render() {
@@ -36,7 +37,8 @@ class ArticleCard extends React.Component {
     );
   }
   handleClick = () => {
-    console.log('lol nothing yet');
+    const { article_id } = this.props.article;
+    api.deleteArticle({ article_id });
   };
 }
 

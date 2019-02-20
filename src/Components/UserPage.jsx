@@ -6,7 +6,7 @@ class UserPage extends Component {
   state = { articles: [], total_count: 0 };
 
   componentDidMount() {
-    this.getUserArticles();
+    this.fetchUserArticles();
   }
   render() {
     const { articles, total_count } = this.state;
@@ -25,10 +25,10 @@ class UserPage extends Component {
       </div>
     );
   }
-  getUserArticles = () => {
+  fetchUserArticles = () => {
     const { username } = this.props;
     api
-      .fetchUserArticles(username)
+      .getUserArticles(username)
       .then(({ articles, total_count }) =>
         this.setState({ articles, total_count })
       );

@@ -6,7 +6,7 @@ import './Users.css';
 class Users extends Component {
   state = { users: [] };
   componentDidMount() {
-    this.getUsers();
+    this.fetchUsers();
   }
   render() {
     const { users } = this.state;
@@ -19,8 +19,8 @@ class Users extends Component {
       </div>
     );
   }
-  getUsers = () => {
-    api.fetchUsers().then(users => this.setState({ users }));
+  fetchUsers = () => {
+    api.getUsers().then(users => this.setState({ users }));
   };
 }
 

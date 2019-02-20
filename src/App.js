@@ -29,7 +29,7 @@ class App extends Component {
     );
   }
   setUser = username => {
-    api.fetchUser(username).then(user => this.setState({ user }));
+    api.getUser(username).then(user => this.setState({ user }));
   };
   clearUser = () => {
     this.setState({ user: {} });

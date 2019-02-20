@@ -5,6 +5,10 @@ import * as api from '../api';
 class PostBox extends React.Component {
   state = { title: '', selectedTopic: this.props.topic, body: '' };
 
+  componentDidMount() {
+    if (!this.state.selectedTopic) this.setState({ selectedTopic: 'coding' });
+  }
+
   render() {
     const { topics } = this.props;
     const { title, body, selectedTopic } = this.state;

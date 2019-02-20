@@ -6,7 +6,7 @@ class ArticlePage extends Component {
   state = { article: {} };
 
   componentDidMount() {
-    this.getArticle();
+    this.fetchArticle();
   }
 
   render() {
@@ -21,9 +21,9 @@ class ArticlePage extends Component {
     );
   }
 
-  getArticle = () => {
+  fetchArticle = () => {
     const { article_id } = this.props;
-    api.fetchArticle(article_id).then(article => this.setState({ article }));
+    api.getArticle(article_id).then(article => this.setState({ article }));
   };
 }
 

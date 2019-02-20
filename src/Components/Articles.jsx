@@ -8,7 +8,7 @@ class Articles extends Component {
   state = { articles: [], category: 'date', displayPostBox: false, topics: [] };
 
   componentDidMount() {
-    this.getArticles();
+    this.fetchArticles();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -17,7 +17,7 @@ class Articles extends Component {
       prevProps.topic !== this.props.topic ||
       prevState.displayPostBox !== this.state.displayPostBox
     )
-      this.getArticles();
+      this.fetchArticles();
   }
 
   render() {
@@ -55,11 +55,11 @@ class Articles extends Component {
     );
   }
 
-  getArticles = () => {
+  fetchArticles = () => {
     const { category } = this.state;
     const { topic } = this.props;
     api
-      .fetchArticles({ category, topic })
+      .getArticles({ category, topic })
       .then(articles => this.setState({ articles }));
   };
 
@@ -69,7 +69,7 @@ class Articles extends Component {
 
   handleClick = () => {
     if (!this.state.displayPostBox) {
-      api.fetchTopics().then(topics => {
+      api.getTopics().then(topics => {
         this.setState(
           {
             displayPostBox: true,

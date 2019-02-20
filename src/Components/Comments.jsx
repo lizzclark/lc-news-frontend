@@ -7,7 +7,7 @@ class Comments extends Component {
   state = { comments: [], displayCommentBox: false };
 
   componentDidMount() {
-    this.getComments();
+    this.fetchComments();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -15,7 +15,7 @@ class Comments extends Component {
       prevProps.article_id !== this.props.article_id ||
       prevState.displayCommentBox !== this.state.displayCommentBox
     ) {
-      this.getComments();
+      this.fetchComments();
     }
   }
 
@@ -58,8 +58,8 @@ class Comments extends Component {
     );
   };
 
-  getComments = () => {
-    return api.fetchComments(this.props.article_id).then(comments => {
+  fetchComments = () => {
+    return api.getComments(this.props.article_id).then(comments => {
       this.setState({ comments });
     });
   };

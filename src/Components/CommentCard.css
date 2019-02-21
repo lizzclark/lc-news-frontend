@@ -1,12 +1,14 @@
 .comment-card {
-  background: rosybrown;
-  border: 1px solid orange;
-  margin: 10px;
   display: grid;
   grid-template-columns: 9em 3fr;
   grid-template-rows: 1fr;
   grid-template-areas: 'userinfo body';
+  margin: 20px;
   padding: 15px;
+  background: var(--card-colour);
+  border: 3px solid var(--header-colour);
+  border-radius: 15px;
+  box-shadow: 5px 5px var(--header-colour);
 }
 
 .comment-card .userinfo {

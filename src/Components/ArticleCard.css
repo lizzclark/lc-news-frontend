@@ -1,12 +1,16 @@
 .article-card {
-  background: var(--vanilla);
+  background: var(--card-colour);
   width: 95%;
   margin: 15px;
-  padding: 10px;
+  padding: 15px;
+  border: 3px solid var(--header-colour);
+  border-radius: 15px;
+  box-shadow: 5px 5px var(--header-colour);
 }
 
 .article-card h2 {
   padding: 5px;
+  margin: 0px;
 }
 
 @media all and (min-width: 600px) {

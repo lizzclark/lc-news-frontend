@@ -1,13 +1,14 @@
 :root {
-  --pistachio: #d9f1c9;
-  --vanilla: #fff0af;
   --bg-colour: #ffffff;
-  --header-colour: #f0d1d6;
-  --nav-colour: #e9d1c4;
-  --main-colour: var(--pistachio);
-  --footer-colour: #f0d1d6;
+  --header-colour: #39599886;
+  --nav-colour: #8366a6;
+  --main-colour: #afbfda;
+  --footer-colour: #8366a6;
+  --sidebar-colour: #878cb6;
   --menu-text-colour: black;
+  --card-colour: #fff;
   --link-colour: black;
+  --text-colour: #140e14;
 }
 
 body {
@@ -23,6 +24,8 @@ a:hover {
 }
 
 .App {
+  font-family: sans-serif;
+  color: var(--text-colour);
   text-align: center;
   display: grid;
   height: 98vh;
@@ -55,11 +58,8 @@ a:hover {
 }
 
 .sidebar {
+  background: var(--nav-colour);
   grid-area: userbar;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly;
-  align-items: center;
 }
 
 .sidebar .logout {
@@ -87,23 +87,18 @@ a:hover {
 @media all and (min-width: 1000px) {
   .App {
     grid-template-rows: 1fr 0.5fr 7.5fr 0.5fr;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 4fr;
     grid-template-areas: 'header header' 'nav nav' 'sidebar main' 'footer footer';
   }
+
+  /* change sidebar position and reveal hidden items - other styling is in Sidebar.css */
+
   .sidebar {
+    background: var(--sidebar-colour);
     grid-area: sidebar;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: start;
-    align-items: start;
   }
 
   .sidebar .lg-screen-hide {
     display: block;
-  }
-  .sidebar img {
-    width: 200px;
-    height: auto;
-    margin: 0px;
   }
 }

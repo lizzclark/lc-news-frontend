@@ -1,0 +1,24 @@
+.article-page {
+  background: white;
+  margin: 20px;
+  padding: 15px;
+  background: var(--card-colour);
+  border: 3px solid var(--header-colour);
+  border-radius: 15px;
+  box-shadow: 5px 5px var(--header-colour);
+}
+
+.article-page h1 {
+  font-size: 180%;
+  margin-top: 15px;
+}
+
+.article-page h1,
+.article-page h2,
+.article-page h3,
+.article-text {
+  text-align: left;
+}
+.article-page h2 {
+  font-size: 130%;
+}

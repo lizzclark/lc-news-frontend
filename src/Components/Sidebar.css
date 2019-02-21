@@ -1,0 +1,27 @@
+/* Mobile first - this is when Sidebar is small section of Nav with hidden items */
+
+.sidebar {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/* These styles are for wider screens where the sidebar appears fully */
+
+@media all and (min-width: 1000px) {
+  .sidebar .avatar,
+  .sidebar img {
+    width: 180px;
+    height: 180px;
+    margin: 0px;
+  }
+
+  .sidebar {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10px;
+  }
+}

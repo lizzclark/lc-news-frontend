@@ -25,12 +25,13 @@ class ArticlePage extends Component {
             <Link to={`/topics/${article.topic}`}>{article.topic} </Link>
           </h2>
           <p className="article-text">{article.body}</p>
+          <Voter
+            user={user}
+            article_id={article.article_id}
+            votes={article.votes}
+            resourceAuthor={article.author}
+          />
         </article>
-        <Voter
-          user={user}
-          article_id={article.article_id}
-          votes={article.votes}
-        />
         <Comments article_id={article.article_id} user={user} />
       </>
     );

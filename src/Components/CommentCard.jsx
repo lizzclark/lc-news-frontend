@@ -17,6 +17,7 @@ class CommentCard extends React.Component {
           <p>{dateString}</p>
           <Voter
             user={user}
+            resourceAuthor={comment.author}
             votes={comment.votes}
             article_id={article_id}
             comment_id={comment.comment_id}

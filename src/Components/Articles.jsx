@@ -29,7 +29,6 @@ class Articles extends Component {
   render() {
     const { articles, displayPostBox, topics, isLoading } = this.state;
     const { topic, user } = this.props;
-    console.log('rendering...');
     return (
       <>
         <h2>Viewing all articles{topic && ` in ${topic}`}</h2>

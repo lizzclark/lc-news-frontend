@@ -57,6 +57,8 @@ class Articles extends Component {
         ) : (
           <h2>Loading articles...</h2>
         )}
+
+        {articles.length === 0 && !isLoading && <p>No articles yet.</p>}
       </>
     );
   }

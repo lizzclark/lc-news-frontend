@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from '@reach/router';
 import './ArticleCard.css';
 import Voter from './Voter';
+import ErrorPage from './ErrorPage';
 import * as api from '../api';
 
 class ArticleCard extends React.Component {
-  state = { isDeleted: false };
+  state = { isDeleted: false, hasError: false };
   render() {
     const {
       article_id,
@@ -17,7 +18,8 @@ class ArticleCard extends React.Component {
       votes
     } = this.props.article;
     const { user } = this.props;
-    const { isDeleted } = this.state;
+    const { isDeleted, hasError } = this.state;
+    if (hasError) return <ErrorPage message={"Can't delete article"} />;
     if (isDeleted) return null;
     return (
       <div className="article-card">
@@ -52,7 +54,8 @@ class ArticleCard extends React.Component {
     const { article_id } = this.props.article;
     api
       .deleteArticle({ article_id })
-      .then(res => this.setState({ isDeleted: true }));
+      .then(res => this.setState({ isDeleted: true }))
+      .catch(err => this.setState({ hasError: true }));
   };
 }
 

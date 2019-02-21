@@ -7,10 +7,11 @@ import Main from './Components/Main.jsx';
 import Footer from './Components/Footer.jsx';
 import Auth from './Components/Auth';
 import Sidebar from './Components/Sidebar';
+import ErrorPage from './Components/ErrorPage';
 import * as api from './api';
 
 class App extends Component {
-  state = { user: {} };
+  state = { user: {}, hasError: false };
 
   componentDidMount() {
     const userString = localStorage.getItem('user');
@@ -20,7 +21,8 @@ class App extends Component {
     }
   }
   render() {
-    const { user } = this.state;
+    const { user, hasError } = this.state;
+    if (hasError) return <ErrorPage message={"Can't load app"} />;
     return (
       <div className="App">
         <Header />
@@ -34,7 +36,10 @@ class App extends Component {
     );
   }
   setUser = username => {
-    api.getUser(username).then(user => this.setState({ user }));
+    api
+      .getUser(username)
+      .then(user => this.setState({ user }))
+      .catch(err => this.setState({ hasError: true }));
   };
   clearUser = () => {
     this.setState({ user: {} });

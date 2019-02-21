@@ -1,13 +1,14 @@
 import React from 'react';
 import './PostBox.css';
 import * as api from '../api';
+import ErrorPage from './ErrorPage';
 
 class CommentPostBox extends React.Component {
-  state = { body: '' };
+  state = { body: '', hasError: false };
 
   render() {
-    const { body } = this.state;
-    console.log(this.state);
+    const { body, hasError } = this.state;
+    if (hasError) return <ErrorPage message={"Can't post comment."} />;
     return (
       <form className="comment-postbox" onSubmit={this.handleSubmit}>
         <label for="body" className="body-label">
@@ -38,7 +39,7 @@ class CommentPostBox extends React.Component {
     return api
       .postComment({ article_id, body, username })
       .then(res => toggleCommentBox())
-      .catch(console.log);
+      .catch(err => this.setState({ hasError: true }));
   };
 }
 

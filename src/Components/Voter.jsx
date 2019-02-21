@@ -23,9 +23,7 @@ class Voter extends Component {
   }
   vote = newVoteValue => {
     const { article_id, comment_id } = this.props;
-    api
-      .patchResource({ article_id, comment_id, inc_votes: newVoteValue })
-      .then(console.log);
+    api.patchResource({ article_id, comment_id, inc_votes: newVoteValue });
     this.setState(prevState => {
       return { voteChange: prevState.voteChange + newVoteValue };
     });

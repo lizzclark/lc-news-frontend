@@ -2,11 +2,13 @@ import React from 'react';
 import * as api from '../api';
 import './CommentCard.css';
 import Voter from './Voter';
+import ErrorPage from './ErrorPage';
 
 class CommentCard extends React.Component {
-  state = { isDeleted: false };
+  state = { isDeleted: false, hasError: false };
   render() {
-    const { isDeleted } = this.state;
+    const { isDeleted, hasError } = this.state;
+    if (hasError) return <ErrorPage message={"Can't delete comment"} />;
     if (isDeleted) return null;
     const { comment, user, article_id } = this.props;
     const dateString = new Date(comment.created_at).toString().slice(0, 25);
@@ -37,7 +39,8 @@ class CommentCard extends React.Component {
     const { article_id } = this.props;
     api
       .deleteComment({ article_id, comment_id })
-      .then(res => this.setState({ isDeleted: true }));
+      .then(res => this.setState({ isDeleted: true }))
+      .catch(err => this.setState({ hasError: true }));
   };
 }
 

@@ -3,6 +3,7 @@ import * as api from '../api';
 import Newspaper from './Newspaper';
 import SortButton from './SortButton';
 import PostBox from './PostBox';
+import ErrorPage from './ErrorPage';
 import './Articles.css';
 
 class Articles extends Component {
@@ -11,7 +12,8 @@ class Articles extends Component {
     category: 'date',
     displayPostBox: false,
     topics: [],
-    isLoading: true
+    isLoading: true,
+    hasError: false
   };
 
   componentDidMount() {
@@ -28,8 +30,15 @@ class Articles extends Component {
   }
 
   render() {
-    const { articles, displayPostBox, topics, isLoading } = this.state;
+    const {
+      articles,
+      displayPostBox,
+      topics,
+      isLoading,
+      hasError
+    } = this.state;
     const { topic, user } = this.props;
+    if (hasError) return <ErrorPage message={"Can't load articles"} />;
     return (
       <>
         <h2>Viewing all articles{topic && ` in ${topic}`}</h2>
@@ -68,9 +77,10 @@ class Articles extends Component {
   fetchArticles = () => {
     const { category } = this.state;
     const { topic } = this.props;
-    api
+    return api
       .getArticles({ category, topic })
-      .then(articles => this.setState({ articles, isLoading: false }));
+      .then(articles => this.setState({ articles, isLoading: false }))
+      .catch(err => this.setState({ hasError: true }));
   };
 
   sortBy = category => {
@@ -79,15 +89,15 @@ class Articles extends Component {
 
   handleClick = () => {
     if (!this.state.displayPostBox) {
-      api.getTopics().then(topics => {
-        this.setState(
-          {
+      return api
+        .getTopics()
+        .then(topics => {
+          this.setState({
             displayPostBox: true,
             topics
-          },
-          () => console.log('setting state....')
-        );
-      });
+          });
+        })
+        .catch(err => this.setState({ hasError: true }));
     } else this.setState({ displayPostBox: false });
   };
 }

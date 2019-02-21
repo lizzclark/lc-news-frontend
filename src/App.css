@@ -58,10 +58,7 @@ textarea {
   background: var(--main-colour);
   grid-area: main;
   overflow: auto;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: flex-start;
+  display: block;
 }
 
 .auth {

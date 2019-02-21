@@ -8,14 +8,14 @@ const sortRefObj = {
   votes: 'votes'
 };
 
-export const getArticles = async ({ topic, category }) => {
-  let queryString = '';
-  if (category) {
-    queryString = `?sort_by=${sortRefObj[category]}`;
-  }
+export const getArticles = async ({ topic, category, page }) => {
   const response = topic
-    ? await request.get(`/topics/${topic}/articles${queryString}`)
-    : await request.get(`/articles${queryString}`);
+    ? await request.get(`/topics/${topic}/articles`, {
+        params: { sort_by: sortRefObj[category], p: page }
+      })
+    : await request.get(`/articles`, {
+        params: { sort_by: sortRefObj[category], p: page }
+      });
   return response.data.articles;
 };
 

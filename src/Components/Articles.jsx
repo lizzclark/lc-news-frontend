@@ -10,6 +10,7 @@ class Articles extends Component {
   state = {
     articles: [],
     category: 'date',
+    page: 1,
     displayPostBox: false,
     topics: [],
     isLoading: true,
@@ -21,12 +22,14 @@ class Articles extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (
-      prevState.category !== this.state.category ||
-      prevProps.topic !== this.props.topic ||
-      prevState.displayPostBox !== this.state.displayPostBox
-    )
+    const postBoxToggled =
+      prevState.displayPostBox !== this.state.displayPostBox;
+    const categoryChanged = prevState.category !== this.state.category;
+    const topicChanged = prevProps.topic !== this.props.topic;
+    const nextPage = prevState.page !== this.state.page;
+    if (categoryChanged || topicChanged || postBoxToggled || nextPage) {
       this.fetchArticles();
+    }
   }
 
   render() {
@@ -43,7 +46,7 @@ class Articles extends Component {
       <>
         <h2>Viewing all articles{topic && ` in ${topic}`}</h2>
 
-        <button onClick={this.handleClick} className="post-box-button">
+        <button onClick={this.togglePostBox} className="post-box-button">
           Post an article {displayPostBox ? '⬆' : '⬇'}
         </button>
         {displayPostBox && (
@@ -51,11 +54,11 @@ class Articles extends Component {
             topic={topic}
             topics={topics}
             user={user}
-            togglePostBox={this.handleClick}
+            togglePostBox={this.togglePostBox}
           />
         )}
 
-        {!isLoading ? (
+        {!isLoading && articles.length !== 0 ? (
           <>
             <div className="sort-buttons">
               <span>Sort by: </span>
@@ -64,6 +67,7 @@ class Articles extends Component {
               <SortButton category="votes" sortBy={this.sortBy} />
             </div>
             <Newspaper articles={articles} user={user} />
+            <button onClick={this.loadMore}>Load more</button>
           </>
         ) : (
           <h2>Loading articles...</h2>
@@ -75,11 +79,20 @@ class Articles extends Component {
   }
 
   fetchArticles = () => {
-    const { category } = this.state;
+    const { category, page } = this.state;
+    console.log('fetching articles on page', page);
     const { topic } = this.props;
     return api
-      .getArticles({ category, topic })
-      .then(articles => this.setState({ articles, isLoading: false }))
+      .getArticles({ category, topic, page })
+      .then(articles =>
+        this.setState(prevState => {
+          return {
+            articles:
+              page === 1 ? articles : [...prevState.articles, ...articles],
+            isLoading: false
+          };
+        })
+      )
       .catch(err => this.setState({ hasError: true }));
   };
 
@@ -87,7 +100,7 @@ class Articles extends Component {
     this.setState({ category });
   };
 
-  handleClick = () => {
+  togglePostBox = () => {
     if (!this.state.displayPostBox) {
       return api
         .getTopics()
@@ -99,6 +112,11 @@ class Articles extends Component {
         })
         .catch(err => this.setState({ hasError: true }));
     } else this.setState({ displayPostBox: false });
+  };
+
+  loadMore = () => {
+    let prevPage = this.state.page;
+    return this.setState({ page: ++prevPage });
   };
 }
 export default Articles;

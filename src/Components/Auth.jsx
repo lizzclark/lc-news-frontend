@@ -6,13 +6,20 @@ class Auth extends Component {
 
   render() {
     const { user } = this.props;
+    const { username } = this.state;
     if (user.username) return this.props.children;
     return (
       <div className="auth">
         <form onSubmit={this.handleSubmit}>
           <label for="username">Username:</label>
-          <input type="text" name="username" onChange={this.handleChange} />
-          <button onClick={this.handleSubmit}>Log in</button>
+          <input
+            type="text"
+            name="username"
+            value={username}
+            onChange={this.handleChange}
+            required
+          />
+          <button>Log in</button>
         </form>
         <Users isLinked={false} />
       </div>

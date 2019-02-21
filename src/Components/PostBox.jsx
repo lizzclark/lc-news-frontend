@@ -23,6 +23,7 @@ class PostBox extends React.Component {
           name="title"
           className="title"
           value={title}
+          required
         />
         <br />
         <label for="topic" className="topic-label">
@@ -50,6 +51,7 @@ class PostBox extends React.Component {
           name="body"
           className="body"
           value={body}
+          required
         />
         <br />
         <button>Publish</button>

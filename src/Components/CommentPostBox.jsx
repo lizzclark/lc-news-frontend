@@ -18,9 +18,10 @@ class CommentPostBox extends React.Component {
           onChange={this.handleChange}
           value={body}
           className="body"
+          required
         />
         <br />
-        <button onClick={this.handleSubmit}>Publish</button>
+        <button>Publish</button>
       </form>
     );
   }

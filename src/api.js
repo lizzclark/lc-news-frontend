@@ -78,8 +78,11 @@ export const deleteArticle = async ({ article_id }) => {
   return response;
 };
 
-export const patchArticle = async ({ article_id, inc_votes }) => {
-  const response = await request.patch(`/articles/${article_id}`, {
+export const patchResource = async ({ article_id, comment_id, inc_votes }) => {
+  const path = comment_id
+    ? `/articles/${article_id}/comments/${comment_id}`
+    : `/articles/${article_id}`;
+  const response = await request.patch(path, {
     inc_votes
   });
   return response;

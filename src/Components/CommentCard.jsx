@@ -1,24 +1,26 @@
 import React from 'react';
 import * as api from '../api';
 import './CommentCard.css';
+import Voter from './Voter';
 
 class CommentCard extends React.Component {
   state = { isDeleted: false };
   render() {
     const { isDeleted } = this.state;
     if (isDeleted) return null;
-    const { comment, user } = this.props;
+    const { comment, user, article_id } = this.props;
     const dateString = new Date(comment.created_at).toString().slice(0, 25);
     return (
       <div className="comment-card">
         <div className="userinfo">
           <h3>{comment.author}</h3>
           <p>{dateString}</p>
-          <p>
-            <button>+</button>
-            {comment.votes} votes
-            <button>-</button>
-          </p>
+          <Voter
+            user={user}
+            votes={comment.votes}
+            article_id={article_id}
+            comment_id={comment.comment_id}
+          />
           {user.username === comment.author && (
             <button onClick={() => this.handleClick(comment.comment_id)}>
               delete

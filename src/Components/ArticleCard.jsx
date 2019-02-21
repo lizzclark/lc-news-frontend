@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 import './ArticleCard.css';
+import Voter from './Voter';
 import * as api from '../api';
 
 class ArticleCard extends React.Component {
@@ -15,7 +16,7 @@ class ArticleCard extends React.Component {
       author,
       votes
     } = this.props.article;
-    const { username } = this.props.user;
+    const { user } = this.props;
     const { isDeleted } = this.state;
     if (isDeleted) return null;
     return (
@@ -27,13 +28,11 @@ class ArticleCard extends React.Component {
         by <Link to={`/users/${author}`}>{author}</Link> <br />
         in <Link to={`/topics/${topic}/`}>{topic}</Link> <br />
         Date: {created_at} <br />
-        <button>+</button>
-        {votes} votes
-        <button>-</button>
+        <Voter user={user} article_id={article_id} votes={votes} />
         <br />
         <Link to={`/articles/${article_id}`}>{comment_count} comments</Link>
         <br />
-        {username === author && (
+        {user.username === author && (
           <button onClick={this.handleClick}>Delete this article</button>
         )}
       </div>

@@ -24,18 +24,26 @@ class ArticleCard extends React.Component {
         <Link to={`/articles/${article_id}`}>
           <h2>{title}</h2>
         </Link>
-        by <Link to={`/users/${author}`}>{author}</Link>
-        in <Link to={`/topics/${topic}/`}>{topic}</Link>
-        Date: {created_at} <br />
+        <p>
+          by <Link to={`/users/${author}`}>{author}</Link>
+        </p>
+        <p>
+          in <Link to={`/topics/${topic}/`}>{topic}</Link>
+        </p>
+        <p>{new Date(created_at).toString().slice(0, 24)} </p>
         <Voter
           user={user}
           article_id={article_id}
           votes={votes}
           resourceAuthor={author}
         />
-        <Link to={`/articles/${article_id}`}>{comment_count} comments</Link>
+        <p>
+          <Link to={`/articles/${article_id}`}>{comment_count} comments</Link>
+        </p>
         {user.username === author && (
-          <button onClick={this.handleClick}>Delete this article</button>
+          <button onClick={this.handleClick} className="delete-button">
+            Delete
+          </button>
         )}
       </div>
     );

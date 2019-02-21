@@ -9,6 +9,11 @@
   grid-template-columns: 1fr 9fr 1fr;
   grid-template-rows: 4fr 1fr;
   grid-template-areas: 'body-label body .' '. submit .';
+  border: 3px solid var(--header-colour);
+  border-radius: 15px;
+  box-shadow: 5px 5px var(--header-colour);
+  background: rgba(1, 1, 1, 0.1);
+  margin: 10px;
 }
 
 .comment-postbox button {
@@ -31,6 +36,11 @@
   grid-template-columns: 1fr 9fr 1fr;
   grid-template-rows: 1fr 1fr 4fr 1fr;
   grid-template-areas: 'title-label title .' 'topic-label select .' 'body-label body .' '. submit .';
+  border: 3px solid var(--header-colour);
+  border-radius: 15px;
+  box-shadow: 5px 5px var(--header-colour);
+  background: rgba(1, 1, 1, 0.1);
+  margin: 10px;
 }
 
 .article-postbox .title {
@@ -80,16 +90,22 @@
 }
 
 .topic-postbox {
-  width: 80%;
+  width: 70%;
   display: grid;
   grid-template-rows: 1fr 1.5fr 1fr;
-  grid-template-columns: 1fr 3fr 1fr;
-  grid-template-areas: 'slug-label slug .' 'desc-label desc .' '. button .';
+  grid-template-columns: 0.5fr 0.3fr 3fr 0.5fr;
+  grid-template-areas: 'slug-label slug slug .' 'desc-label desc desc .' '. button . .';
+  border: 3px solid var(--header-colour);
+  border-radius: 15px;
+  box-shadow: 5px 5px var(--header-colour);
+  background: rgba(1, 1, 1, 0.1);
+  padding: 10px;
+  margin: 10px;
 }
 
 .topic-postbox .slug {
   grid-area: slug;
-  width: 40%;
+  width: 50%;
 }
 
 .topic-postbox .slug-label {
@@ -110,5 +126,4 @@
 
 .topic-postbox button {
   grid-area: button;
-  width: 45px;
 }

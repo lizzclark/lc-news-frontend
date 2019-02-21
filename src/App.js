@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import './Buttons.css';
 import Header from './Components/Header.jsx';
 import Nav from './Components/Nav.jsx';
 import Main from './Components/Main.jsx';

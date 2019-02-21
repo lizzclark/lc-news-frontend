@@ -3,6 +3,7 @@ import * as api from '../api';
 import Newspaper from './Newspaper';
 import SortButton from './SortButton';
 import PostBox from './PostBox';
+import './Articles.css';
 
 class Articles extends Component {
   state = {
@@ -33,7 +34,7 @@ class Articles extends Component {
       <>
         <h2>Viewing all articles{topic && ` in ${topic}`}</h2>
 
-        <button onClick={this.handleClick}>
+        <button onClick={this.handleClick} className="post-box-button">
           Post an article {displayPostBox ? '⬆' : '⬇'}
         </button>
         {displayPostBox && (
@@ -47,8 +48,9 @@ class Articles extends Component {
 
         {!isLoading ? (
           <>
-            <div>
-              Sort by: <SortButton category="latest" sortBy={this.sortBy} />
+            <div className="sort-buttons">
+              <span>Sort by: </span>
+              <SortButton category="latest" sortBy={this.sortBy} />
               <SortButton category="comments" sortBy={this.sortBy} />
               <SortButton category="votes" sortBy={this.sortBy} />
             </div>

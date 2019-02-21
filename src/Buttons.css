@@ -1,0 +1,26 @@
+button {
+  background: var(--header-colour);
+  border: 1px solid rgba(1, 1, 1, 0.2);
+  border-radius: 15px;
+  font-size: 110%;
+  padding: 5px 15px 5px 15px;
+  margin: 2px 5px 2px 5px;
+}
+
+button:hover {
+  box-shadow: 2px 2px rgba(1, 1, 1, 0.3);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 2px 2px rgba(1, 1, 1, 0.3);
+}
+
+button:active {
+  transform: translateY(2px);
+}
+
+button:disabled {
+  color: var(--voted-colour);
+  opacity: 0.5;
+}

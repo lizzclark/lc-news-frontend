@@ -8,11 +8,21 @@
   box-shadow: 5px 5px var(--header-colour);
   display: flex;
   flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .article-card h2 {
   padding: 5px;
   margin: 0px;
+}
+
+.article-card p {
+  margin: 5px;
+}
+
+.delete-button {
+  width: 100px;
 }
 
 @media all and (min-width: 600px) {

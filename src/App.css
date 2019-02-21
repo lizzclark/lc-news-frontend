@@ -9,6 +9,7 @@
   --card-colour: #fff;
   --link-colour: black;
   --text-colour: #140e14;
+  --voted-colour: rgb(132, 0, 255);
 }
 
 body {
@@ -21,6 +22,13 @@ a {
 
 a:hover {
   text-decoration: none;
+}
+
+select,
+input,
+textarea {
+  font-size: 110%;
+  font-family: sans-serif;
 }
 
 .App {
@@ -50,6 +58,10 @@ a:hover {
   background: var(--main-colour);
   grid-area: main;
   overflow: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .auth {
@@ -62,10 +74,10 @@ a:hover {
   grid-area: userbar;
 }
 
-.sidebar .logout {
+/* .sidebar .logout {
   height: 30px;
   width: 70px;
-}
+} */
 
 .sidebar img {
   height: 50px;

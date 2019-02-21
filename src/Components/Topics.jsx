@@ -12,11 +12,12 @@ class Topics extends Component {
   render() {
     const { topics, isLoading } = this.state;
     if (isLoading) return <h2>Loading topics...</h2>;
+    const topicSlugs = topics.map(topic => topic.slug).sort();
     return (
       <>
         <div className="topics">
-          {topics.map(topic => (
-            <Link to={topic.slug}>{topic.slug}</Link>
+          {topicSlugs.map(slug => (
+            <Link to={slug}>{slug}</Link>
           ))}
         </div>
         <TopicPostBox />

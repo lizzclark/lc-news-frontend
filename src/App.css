@@ -42,7 +42,7 @@ textarea {
 }
 
 .App {
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: var(--text-colour);
   text-align: center;
   display: grid;

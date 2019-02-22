@@ -3,6 +3,7 @@ button {
   border: 1px solid rgba(1, 1, 1, 0.2);
   border-radius: 15px;
   font-size: 110%;
+  font-family: 'Montserrat', sans-serif;
   padding: 5px 15px 5px 15px;
   margin: 2px 5px 2px 5px;
 }

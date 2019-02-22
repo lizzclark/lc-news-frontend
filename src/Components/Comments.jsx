@@ -4,7 +4,12 @@ import CommentPostBox from './CommentPostBox';
 import * as api from '../api';
 
 class Comments extends Component {
-  state = { comments: [], displayCommentBox: false, isLoading: true, page: 1 };
+  state = {
+    comments: [],
+    displayCommentBox: false,
+    isLoading: true,
+    page: 1
+  };
 
   componentDidMount() {
     this.fetchComments();
@@ -27,6 +32,7 @@ class Comments extends Component {
       isLoading,
       hasAllComments
     } = this.state;
+    console.log(this.state);
     const { article_id, user, comment_count } = this.props;
     if (isLoading) return <h2>Loading comments...</h2>;
     return (
@@ -52,9 +58,8 @@ class Comments extends Component {
               article_id={article_id}
             />
           ))}
-        {hasAllComments ? (
-          'No more comments'
-        ) : (
+        {hasAllComments && 'No more comments'}
+        {!hasAllComments && comments.length !== 0 && (
           <button onClick={this.loadMore}>Load more</button>
         )}
         {comments.length === 0 && isLoading === false && (
@@ -67,8 +72,8 @@ class Comments extends Component {
   handleClick = () => {
     this.setState(prevState =>
       prevState.displayCommentBox
-        ? this.setState({ displayCommentBox: false })
-        : this.setState({ displayCommentBox: true })
+        ? this.setState({ page: 1, displayCommentBox: false })
+        : this.setState({ page: 1, displayCommentBox: true })
     );
   };
 
@@ -79,12 +84,18 @@ class Comments extends Component {
       .getComments({ article_id, page })
       .then(comments => {
         this.setState(prevState => {
-          const newCommentsLength = prevState.comments.length + comments.length;
+          const newCommentsLength =
+            page === 1
+              ? comments.length
+              : prevState.comments.length + comments.length;
+          console.log(newCommentsLength, 'new comments length');
+          console.log(prevState.comments.length, '+', comments.length);
+          console.log(comment_count);
           return {
             isLoading: false,
             comments:
               page === 1 ? comments : [...prevState.comments, ...comments],
-            hasAllComments: newCommentsLength === +comment_count
+            hasAllComments: newCommentsLength >= +comment_count
           };
         });
       })

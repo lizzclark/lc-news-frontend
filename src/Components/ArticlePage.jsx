@@ -49,7 +49,11 @@ class ArticlePage extends Component {
             resourceAuthor={article.author}
           />
         </article>
-        <Comments article_id={article.article_id} user={user} />
+        <Comments
+          article_id={article.article_id}
+          user={user}
+          comment_count={article.comment_count}
+        />
       </>
     );
   }

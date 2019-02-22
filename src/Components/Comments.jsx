@@ -21,13 +21,17 @@ class Comments extends Component {
   }
 
   render() {
-    const { comments, displayCommentBox, isLoading } = this.state;
-    const { article_id, user } = this.props;
+    const {
+      comments,
+      displayCommentBox,
+      isLoading,
+      hasAllComments
+    } = this.state;
+    const { article_id, user, comment_count } = this.props;
     if (isLoading) return <h2>Loading comments...</h2>;
-    console.log(this.state);
     return (
       <div className="comments">
-        <h2>Comments</h2>
+        <h2>{comment_count} comments</h2>
         <button onClick={this.handleClick}>
           Post a comment {displayCommentBox ? '⬆' : '⬇'}
         </button>
@@ -48,7 +52,11 @@ class Comments extends Component {
               article_id={article_id}
             />
           ))}
-        <button onClick={this.loadMore}>Load more</button>
+        {hasAllComments ? (
+          'No more comments'
+        ) : (
+          <button onClick={this.loadMore}>Load more</button>
+        )}
         {comments.length === 0 && isLoading === false && (
           <p>No comments yet.</p>
         )}
@@ -65,16 +73,18 @@ class Comments extends Component {
   };
 
   fetchComments = () => {
-    const { article_id } = this.props;
+    const { article_id, comment_count } = this.props;
     const { page } = this.state;
     return api
       .getComments({ article_id, page })
       .then(comments => {
         this.setState(prevState => {
+          const newCommentsLength = prevState.comments.length + comments.length;
           return {
             isLoading: false,
             comments:
-              page === 1 ? comments : [...prevState.comments, ...comments]
+              page === 1 ? comments : [...prevState.comments, ...comments],
+            hasAllComments: newCommentsLength === +comment_count
           };
         });
       })

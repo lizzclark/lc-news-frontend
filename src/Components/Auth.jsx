@@ -5,9 +5,9 @@ class Auth extends Component {
   state = { username: '' };
 
   render() {
-    const { user } = this.props;
+    const { user, children } = this.props;
     const { username } = this.state;
-    if (user.username) return this.props.children;
+    if (user.username) return children;
     return (
       <div className="auth">
         <form onSubmit={this.handleSubmit}>

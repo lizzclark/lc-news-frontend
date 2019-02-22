@@ -46,7 +46,6 @@ class Articles extends Component {
     } = this.state;
     const { topic, user } = this.props;
     if (hasError) return <ErrorPage message={"Can't load articles"} />;
-    console.log(this.state);
     return (
       <>
         <h2>
@@ -128,12 +127,7 @@ class Articles extends Component {
   };
 
   loadMore = () => {
-    // const { articles, total_count } = this.state;
-    // if (articles.length === total_count) {
-    //   return this.setState({ hasAllArticles: true });
-    // }
-    let prevPage = this.state.page;
-    return this.setState({ page: ++prevPage });
+    return this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 }
 export default Articles;

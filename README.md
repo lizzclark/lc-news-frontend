@@ -2,7 +2,7 @@
 
 A fully functional, responsive frontend to the LC News API.
 
-##LC News links
+## LC News links
 
 Backend on Github: https://github.com/lizzclark/lc-news
 
@@ -10,13 +10,13 @@ Backend live version: https://lc-news.herokuapp.com/api
 
 Frontend on Github: https://github.com/lizzclark/lc-news-frontend
 
-Frontend live version: <LINK>
+Frontend live version: https://lc-news.netlify.com
 
 ## Getting Started
 
 <!-- These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system. -->
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+These instructions will get you a copy of the project up and running on your local machine.
 
 ### Prerequisites
 
@@ -24,13 +24,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 Running the command `npm install` from the root directory of the project will install all the necessary dependencies.
 
-## Running the tests
-
-To run the tests, use the command `npm test`
-
 ## Deployed Version
 
-The project is deployed here: https://lc-news.herokuapp.com/
+The project is deployed here: https://lc-news.netlify.com/
 
 ## Built by
 

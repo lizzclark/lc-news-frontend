@@ -9,6 +9,7 @@ import Auth from './Components/Auth';
 import Sidebar from './Components/Sidebar';
 import ErrorPage from './Components/ErrorPage';
 import * as api from './api';
+import { navigate } from '@reach/router';
 
 class App extends Component {
   state = { user: {}, hasError: false };
@@ -42,6 +43,7 @@ class App extends Component {
       .catch(err => this.setState({ hasError: true }));
   };
   clearUser = () => {
+    navigate('/');
     this.setState({ user: {} });
   };
 }

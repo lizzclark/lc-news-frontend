@@ -1,6 +1,7 @@
 import React from 'react';
 import * as api from '../api';
 import './CommentCard.css';
+import TimeAgo from 'react-timeago';
 import Voter from './Voter';
 import ErrorPage from './ErrorPage';
 
@@ -11,12 +12,11 @@ class CommentCard extends React.Component {
     if (hasError) return <ErrorPage message={"Can't delete comment"} />;
     if (isDeleted) return null;
     const { comment, user, article_id } = this.props;
-    const dateString = new Date(comment.created_at).toString().slice(0, 25);
     return (
       <div className="comment-card">
         <div className="userinfo">
           <h3>{comment.author}</h3>
-          <p>{dateString}</p>
+          <TimeAgo date={comment.created_at} />
           <Voter
             user={user}
             resourceAuthor={comment.author}

@@ -3,6 +3,7 @@ import { Link } from '@reach/router';
 import './ArticleCard.css';
 import Voter from './Voter';
 import ErrorPage from './ErrorPage';
+import TimeAgo from 'react-timeago';
 import * as api from '../api';
 
 class ArticleCard extends React.Component {
@@ -32,7 +33,7 @@ class ArticleCard extends React.Component {
         <p>
           in <Link to={`/topics/${topic}/`}>{topic}</Link>
         </p>
-        <p>{new Date(created_at).toString().slice(0, 24)} </p>
+        <TimeAgo date={created_at} />
         <Voter
           user={user}
           article_id={article_id}

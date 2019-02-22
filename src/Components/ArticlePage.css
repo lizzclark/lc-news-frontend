@@ -16,7 +16,8 @@
 .article-page h1,
 .article-page h2,
 .article-page h3,
-.article-text {
+.article-text,
+.article-date {
   text-align: left;
 }
 .article-page h2 {

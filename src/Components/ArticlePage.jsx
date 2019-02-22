@@ -4,6 +4,7 @@ import Comments from './Comments';
 import Voter from './Voter';
 import ErrorPage from './ErrorPage';
 import { Link } from '@reach/router';
+import TimeAgo from 'react-timeago';
 import './ArticlePage.css';
 
 class ArticlePage extends Component {
@@ -30,7 +31,6 @@ class ArticlePage extends Component {
         />
       );
     if (isLoading) return <h2>Loading article...</h2>;
-    const timestamp = new Date(article.created_at).toString().slice(0, 21);
     return (
       <>
         <article className="article-page">
@@ -39,7 +39,9 @@ class ArticlePage extends Component {
             by <Link to={`/users/${article.author}`}>{article.author}</Link> in{' '}
             <Link to={`/topics/${article.topic}`}>{article.topic} </Link>
           </h2>
-          <p className="article-date">{timestamp}</p>
+          <div className="article-date">
+            <TimeAgo date={article.created_at} />
+          </div>
           <p className="article-text">{article.body}</p>
           <Voter
             user={user}

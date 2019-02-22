@@ -33,7 +33,7 @@ class ArticleCard extends React.Component {
         <p>
           in <Link to={`/topics/${topic}/`}>{topic}</Link>
         </p>
-        <TimeAgo date={created_at} />
+        <TimeAgo date={created_at} live={false} />
         <Voter
           user={user}
           article_id={article_id}

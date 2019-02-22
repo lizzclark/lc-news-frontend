@@ -40,7 +40,7 @@ class ArticlePage extends Component {
             <Link to={`/topics/${article.topic}`}>{article.topic} </Link>
           </h2>
           <div className="article-date">
-            <TimeAgo date={article.created_at} />
+            <TimeAgo date={article.created_at} live={false} />
           </div>
           <p className="article-text">{article.body}</p>
           <Voter

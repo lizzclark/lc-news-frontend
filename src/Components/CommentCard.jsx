@@ -16,7 +16,7 @@ class CommentCard extends React.Component {
       <div className="comment-card">
         <div className="userinfo">
           <h3>{comment.author}</h3>
-          <TimeAgo date={comment.created_at} />
+          <TimeAgo date={comment.created_at} live={false} />
           <Voter
             user={user}
             resourceAuthor={comment.author}

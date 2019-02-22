@@ -21,7 +21,7 @@ class ArticlePage extends Component {
   render() {
     const { article, isLoading, hasError, hasDeleteError } = this.state;
     const { user } = this.props;
-    if (hasError)
+    if (hasError || hasDeleteError)
       return (
         <ErrorPage
           message={
@@ -69,7 +69,9 @@ class ArticlePage extends Component {
       .then(res =>
         this.props.navigate('/', { state: { deletedArticle: true } })
       )
-      .catch(err => this.setState({ hasError: true }));
+      .catch(
+        err => console.log(err) || this.setState({ hasDeleteError: true })
+      );
   };
 }
 

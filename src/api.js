@@ -39,8 +39,10 @@ export const getArticle = async article_id => {
   return response.data.article;
 };
 
-export const getComments = async article_id => {
-  const response = await request.get(`/articles/${article_id}/comments`);
+export const getComments = async ({ article_id, page }) => {
+  const response = await request.get(`/articles/${article_id}/comments`, {
+    params: { p: page }
+  });
   return response.data.comments;
 };
 

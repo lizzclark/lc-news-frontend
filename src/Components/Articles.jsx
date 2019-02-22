@@ -80,7 +80,6 @@ class Articles extends Component {
 
   fetchArticles = () => {
     const { category, page } = this.state;
-    console.log('fetching articles on page', page);
     const { topic } = this.props;
     return api
       .getArticles({ category, topic, page })

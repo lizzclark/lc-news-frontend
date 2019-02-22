@@ -4,17 +4,18 @@ import CommentPostBox from './CommentPostBox';
 import * as api from '../api';
 
 class Comments extends Component {
-  state = { comments: [], displayCommentBox: false, isLoading: true };
+  state = { comments: [], displayCommentBox: false, isLoading: true, page: 1 };
 
   componentDidMount() {
     this.fetchComments();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (
-      prevProps.article_id !== this.props.article_id ||
-      prevState.displayCommentBox !== this.state.displayCommentBox
-    ) {
+    const articleChange = prevProps.article_id !== this.props.article_id;
+    const toggledCommentBox =
+      prevState.displayCommentBox !== this.state.displayCommentBox;
+    const newPage = prevState.page !== this.state.page;
+    if (articleChange || toggledCommentBox || newPage) {
       this.fetchComments();
     }
   }
@@ -23,6 +24,7 @@ class Comments extends Component {
     const { comments, displayCommentBox, isLoading } = this.state;
     const { article_id, user } = this.props;
     if (isLoading) return <h2>Loading comments...</h2>;
+    console.log(this.state);
     return (
       <div className="comments">
         <h2>Comments</h2>
@@ -46,6 +48,7 @@ class Comments extends Component {
               article_id={article_id}
             />
           ))}
+        <button onClick={this.loadMore}>Load more</button>
         {comments.length === 0 && isLoading === false && (
           <p>No comments yet.</p>
         )}
@@ -62,12 +65,25 @@ class Comments extends Component {
   };
 
   fetchComments = () => {
+    const { article_id } = this.props;
+    const { page } = this.state;
     return api
-      .getComments(this.props.article_id)
+      .getComments({ article_id, page })
       .then(comments => {
-        this.setState({ comments, isLoading: false });
+        this.setState(prevState => {
+          return {
+            isLoading: false,
+            comments:
+              page === 1 ? comments : [...prevState.comments, ...comments]
+          };
+        });
       })
       .catch(err => this.setState({ comments: [], isLoading: false }));
+  };
+
+  loadMore = () => {
+    let prevPage = this.state.page;
+    return this.setState({ page: ++prevPage });
   };
 }
 

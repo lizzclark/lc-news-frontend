@@ -7,21 +7,40 @@
   align-items: center;
 }
 
+.sidebar img {
+  height: 40px;
+  width: auto;
+  background: #fff;
+  margin: 3px;
+  border: 3px solid var(--header-colour);
+  border-radius: 10px;
+}
+
 /* These styles are for wider screens where the sidebar appears fully */
 
 @media all and (min-width: 1000px) {
-  .sidebar .avatar,
-  .sidebar img {
-    width: 180px;
-    height: 180px;
-    margin: 0px;
+  .sidebar {
+    display: block;
+    text-align: left;
+    padding: 10px;
   }
 
-  .sidebar {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 10px;
+  .sidebar img {
+    display: block;
+    height: 200px;
+    width: 200px;
+    margin: 10px 0px;
+    border: 10px solid var(--header-colour);
+    border-radius: 30px;
+    background: #fff;
+  }
+
+  .sidebar .avatar {
+    text-align: center;
+  }
+
+  .lg-screen-hide {
+    font-weight: bold;
+    font-size: 120%;
   }
 }

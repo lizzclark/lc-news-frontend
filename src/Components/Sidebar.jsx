@@ -12,9 +12,13 @@ const Sidebar = ({ logout, user: { username, name, avatar_url } }) => {
         Log out
       </button>
       <div className="avatar">
-        <img src={`${avatar_url}`} alt="your avatar" />
+        <Link to={`/users/${username}`}>
+          <img src={`${avatar_url}`} alt="your avatar" />
+        </Link>
+        <Link className="lg-screen-hide" to={`/users/${username}`}>
+          {username}
+        </Link>
       </div>
-      <p className="lg-screen-hide">{username}</p>
     </section>
   );
 };

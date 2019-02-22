@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api';
+import './Voter.css';
 
 class Voter extends Component {
   state = { voteChange: 0 };
@@ -7,7 +8,7 @@ class Voter extends Component {
     const { votes, user, resourceAuthor } = this.props;
     const { voteChange } = this.state;
     if (user.username === resourceAuthor) {
-      return <p>{votes} votes</p>;
+      return <p className="voter">{votes} votes</p>;
     }
     return (
       <div className="voter">

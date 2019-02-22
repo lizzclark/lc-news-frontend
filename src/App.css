@@ -24,6 +24,16 @@ a:hover {
   text-decoration: none;
 }
 
+img {
+  display: block;
+  height: 200px;
+  width: 200px;
+  margin: 10px 0px;
+  border: 10px solid var(--header-colour);
+  border-radius: 30px;
+  background: #fff;
+}
+
 select,
 input,
 textarea {
@@ -69,17 +79,6 @@ textarea {
 .sidebar {
   background: var(--nav-colour);
   grid-area: userbar;
-}
-
-/* .sidebar .logout {
-  height: 30px;
-  width: 70px;
-} */
-
-.sidebar img {
-  height: 50px;
-  width: auto;
-  margin: auto;
 }
 
 .sidebar .lg-screen-hide {

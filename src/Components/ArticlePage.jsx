@@ -30,6 +30,7 @@ class ArticlePage extends Component {
         />
       );
     if (isLoading) return <h2>Loading article...</h2>;
+    const timestamp = new Date(article.created_at).toString().slice(0, 21);
     return (
       <>
         <article className="article-page">
@@ -38,16 +39,17 @@ class ArticlePage extends Component {
             by <Link to={`/users/${article.author}`}>{article.author}</Link> in{' '}
             <Link to={`/topics/${article.topic}`}>{article.topic} </Link>
           </h2>
+          <p className="article-date">{timestamp}</p>
           <p className="article-text">{article.body}</p>
-          {user.username === article.author && (
-            <button onClick={this.deleteArticle}>Delete article</button>
-          )}
           <Voter
             user={user}
             article_id={article.article_id}
             votes={article.votes}
             resourceAuthor={article.author}
           />
+          {user.username === article.author && (
+            <button onClick={this.deleteArticle}>Delete article</button>
+          )}
         </article>
         <Comments
           article_id={article.article_id}

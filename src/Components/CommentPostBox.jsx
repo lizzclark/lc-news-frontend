@@ -33,12 +33,15 @@ class CommentPostBox extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { article_id, toggleCommentBox } = this.props;
+    const { article_id, fetchComments, toggleCommentBox } = this.props;
     const { username } = this.props.user;
     const { body } = this.state;
     return api
       .postComment({ article_id, body, username })
-      .then(res => toggleCommentBox())
+      .then(res => fetchComments())
+      .then(() => {
+        toggleCommentBox();
+      })
       .catch(err => this.setState({ hasError: true }));
   };
 }

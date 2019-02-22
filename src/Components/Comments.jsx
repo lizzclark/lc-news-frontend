@@ -17,10 +17,8 @@ class Comments extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const articleChange = prevProps.article_id !== this.props.article_id;
-    const toggledCommentBox =
-      prevState.displayCommentBox !== this.state.displayCommentBox;
     const newPage = prevState.page !== this.state.page;
-    if (articleChange || toggledCommentBox || newPage) {
+    if (articleChange || newPage) {
       this.fetchComments();
     }
   }
@@ -32,7 +30,6 @@ class Comments extends Component {
       isLoading,
       hasAllComments
     } = this.state;
-    console.log(this.state);
     const { article_id, user, comment_count } = this.props;
     if (isLoading) return <h2>Loading comments...</h2>;
     return (
@@ -46,6 +43,7 @@ class Comments extends Component {
           <CommentPostBox
             article_id={article_id}
             user={user}
+            fetchComments={this.fetchComments}
             toggleCommentBox={this.handleClick}
           />
         )}
@@ -88,9 +86,6 @@ class Comments extends Component {
             page === 1
               ? comments.length
               : prevState.comments.length + comments.length;
-          console.log(newCommentsLength, 'new comments length');
-          console.log(prevState.comments.length, '+', comments.length);
-          console.log(comment_count);
           return {
             isLoading: false,
             comments:

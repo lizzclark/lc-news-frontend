@@ -1,9 +1,15 @@
 import React from 'react';
 import './PostBox.css';
+import ErrorPage from './ErrorPage';
 import * as api from '../api';
 
 class PostBox extends React.Component {
-  state = { title: '', selectedTopic: this.props.topic, body: '' };
+  state = {
+    title: '',
+    selectedTopic: this.props.topic,
+    body: '',
+    hasError: false
+  };
 
   componentDidMount() {
     if (!this.state.selectedTopic) this.setState({ selectedTopic: 'coding' });
@@ -11,7 +17,8 @@ class PostBox extends React.Component {
 
   render() {
     const { topics } = this.props;
-    const { title, body, selectedTopic } = this.state;
+    const { title, body, selectedTopic, hasError } = this.state;
+    if (hasError) return <ErrorPage message={"Can't post article."} />;
     return (
       <form className="article-postbox" onSubmit={this.handleSubmit}>
         <label for="title" className="title-label">
@@ -81,7 +88,7 @@ class PostBox extends React.Component {
         togglePostBox();
         return this.setState({ title: '', body: '', topic: '' });
       })
-      .catch(console.log);
+      .catch(err => this.setState({ hasError: true }));
   };
 }
 

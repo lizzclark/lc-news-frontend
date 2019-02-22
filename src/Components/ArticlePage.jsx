@@ -69,9 +69,7 @@ class ArticlePage extends Component {
       .then(res =>
         this.props.navigate('/', { state: { deletedArticle: true } })
       )
-      .catch(
-        err => console.log(err) || this.setState({ hasDeleteError: true })
-      );
+      .catch(err => this.setState({ hasDeleteError: true }));
   };
 }
 

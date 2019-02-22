@@ -97,7 +97,6 @@ class Articles extends Component {
       .then(({ articles, total_count }) => {
         return this.setState(prevState => {
           const newArticlesLength = prevState.articles.length + articles.length;
-          console.log(newArticlesLength, 'new articles length');
           return {
             articles:
               page === 1 ? articles : [...prevState.articles, ...articles],
@@ -111,7 +110,7 @@ class Articles extends Component {
   };
 
   sortBy = category => {
-    this.setState({ category });
+    this.setState({ category, page: 1 });
   };
 
   togglePostBox = () => {

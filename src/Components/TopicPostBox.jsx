@@ -1,12 +1,18 @@
 import React from 'react';
 import './PostBox.css';
 import * as api from '../api';
+import { navigate } from '@reach/router';
+import ErrorPage from './ErrorPage';
 
 class TopicPostBox extends React.Component {
-  state = { slug: '', description: '' };
+  state = { slug: '', description: '', hasError: false };
 
   render() {
-    const { description, slug } = this.state;
+    const { description, slug, hasError } = this.state;
+    if (hasError)
+      return (
+        <ErrorPage message={"Can't add topic. Maybe it already exists?"} />
+      );
     return (
       <>
         <h2>Don't like these? Add a topic:</h2>
@@ -49,8 +55,8 @@ class TopicPostBox extends React.Component {
     const { slug, description } = this.state;
     api
       .postTopic({ slug, description })
-      .then(res => console.log(res))
-      .catch(console.log);
+      .then(res => navigate(`/topics/${slug}`))
+      .catch(err => this.setState({ hasError: true }));
     this.setState({ slug: '', description: '' });
   };
 }

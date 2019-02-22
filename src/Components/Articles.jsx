@@ -14,7 +14,8 @@ class Articles extends Component {
     displayPostBox: false,
     topics: [],
     isLoading: true,
-    hasError: false
+    hasError: false,
+    hasAllArticles: false
   };
 
   componentDidMount() {
@@ -27,6 +28,7 @@ class Articles extends Component {
     const categoryChanged = prevState.category !== this.state.category;
     const topicChanged = prevProps.topic !== this.props.topic;
     const nextPage = prevState.page !== this.state.page;
+
     if (categoryChanged || topicChanged || postBoxToggled || nextPage) {
       this.fetchArticles();
     }
@@ -38,13 +40,18 @@ class Articles extends Component {
       displayPostBox,
       topics,
       isLoading,
-      hasError
+      hasError,
+      hasAllArticles,
+      total_count
     } = this.state;
     const { topic, user } = this.props;
     if (hasError) return <ErrorPage message={"Can't load articles"} />;
+    console.log(this.state);
     return (
       <>
-        <h2>Viewing all articles{topic && ` in ${topic}`}</h2>
+        <h2>
+          Viewing {total_count} articles{topic && ` in ${topic}`}
+        </h2>
 
         <button onClick={this.togglePostBox} className="post-box-button">
           Post an article {displayPostBox ? '⬆' : '⬇'}
@@ -67,7 +74,11 @@ class Articles extends Component {
               <SortButton category="votes" sortBy={this.sortBy} />
             </div>
             <Newspaper articles={articles} user={user} />
-            <button onClick={this.loadMore}>Load more</button>
+            {hasAllArticles ? (
+              'No more articles'
+            ) : (
+              <button onClick={this.loadMore}>Load more</button>
+            )}
           </>
         ) : (
           <h2>Loading articles...</h2>
@@ -83,15 +94,19 @@ class Articles extends Component {
     const { topic } = this.props;
     return api
       .getArticles({ category, topic, page })
-      .then(articles =>
-        this.setState(prevState => {
+      .then(({ articles, total_count }) => {
+        return this.setState(prevState => {
+          const newArticlesLength = prevState.articles.length + articles.length;
+          console.log(newArticlesLength, 'new articles length');
           return {
             articles:
               page === 1 ? articles : [...prevState.articles, ...articles],
-            isLoading: false
+            total_count,
+            isLoading: false,
+            hasAllArticles: newArticlesLength === +total_count
           };
-        })
-      )
+        });
+      })
       .catch(err => this.setState({ hasError: true }));
   };
 
@@ -114,6 +129,10 @@ class Articles extends Component {
   };
 
   loadMore = () => {
+    // const { articles, total_count } = this.state;
+    // if (articles.length === total_count) {
+    //   return this.setState({ hasAllArticles: true });
+    // }
     let prevPage = this.state.page;
     return this.setState({ page: ++prevPage });
   };

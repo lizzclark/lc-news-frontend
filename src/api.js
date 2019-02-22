@@ -16,7 +16,7 @@ export const getArticles = async ({ topic, category, page }) => {
     : await request.get(`/articles`, {
         params: { sort_by: sortRefObj[category], p: page }
       });
-  return response.data.articles;
+  return response.data;
 };
 
 export const getUserArticles = async username => {

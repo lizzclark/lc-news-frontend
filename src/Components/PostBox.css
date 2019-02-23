@@ -75,7 +75,7 @@
 }
 .article-postbox button {
   grid-area: submit;
-  width: 5em;
+  width: 6em;
 }
 
 @keyframes dropdown {

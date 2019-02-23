@@ -56,12 +56,14 @@ class Comments extends Component {
               article_id={article_id}
             />
           ))}
-        {hasAllComments && 'No more comments'}
+        {hasAllComments && <p className="nothing-here">No more comments</p>}
         {!hasAllComments && comments.length !== 0 && (
-          <button onClick={this.loadMore}>Load more</button>
+          <button onClick={this.loadMore} className="load-more">
+            Load more
+          </button>
         )}
         {comments.length === 0 && isLoading === false && (
-          <p>No comments yet.</p>
+          <p className="nothing-here">No comments yet</p>
         )}
       </div>
     );

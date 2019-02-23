@@ -1,4 +1,37 @@
 .voter,
-.voter button {
+.voter button,
+.voter-votes-only {
   font-weight: bold;
+}
+
+.article-card .voter,
+.article-page .voter,
+.article-page .voter-votes-only {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin: 10px 0px;
+}
+
+.comment-card .voter {
+  width: 4em;
+  margin: 10px 0px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+  grid-template-areas: 'up' 'votes' 'down';
+  align-items: center;
+}
+
+.comment-card .voter .up {
+  grid-area: up;
+}
+
+.comment-card .voter .down {
+  grid-area: down;
+}
+
+.comment-card .voter .votes {
+  grid-area: votes;
+  text-align: center;
 }

@@ -5,17 +5,9 @@ const Footer = () => {
   return (
     <footer className="footer">
       <p className="footer-text">
-        by <a href="https://github.com/lizzclark">Lizz Clark</a> |{' '}
+        by Lizz Clark | <a href="https://github.com/lizzclark">portfolio</a> |{' '}
         <a href="https://github.com/lizzclark/lc-news-frontend">
-          LC News on Github
-        </a>{' '}
-        |{' '}
-        <a href="https://github.com/lizzclark/lc-news">
-          Backend news API on Github
-        </a>{' '}
-        |{' '}
-        <a href="https://lc-news.herokuapp.com/api">
-          Backend news API on Heroku
+          view this site on Github
         </a>
       </p>
     </footer>

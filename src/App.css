@@ -1,10 +1,10 @@
 :root {
   --bg-colour: #ffffff;
-  --header-colour: #39599886;
+  --header-colour: #7e9ddb;
   --nav-colour: #8366a6;
   --main-colour: #afbfda;
   --footer-colour: #8366a6;
-  --sidebar-colour: #878cb6;
+  --sidebar-colour: #a8aee0;
   --menu-text-colour: black;
   --card-colour: #fff;
   --link-colour: black;
@@ -25,10 +25,8 @@ a:hover {
 }
 
 img {
-  display: block;
   height: 200px;
   width: 200px;
-  margin: 10px 0px;
   border: 10px solid var(--header-colour);
   border-radius: 30px;
   background: #fff;
@@ -38,7 +36,7 @@ select,
 input,
 textarea {
   font-size: 110%;
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .App {
@@ -47,13 +45,14 @@ textarea {
   text-align: center;
   display: grid;
   height: 98vh;
-  grid-template-rows: 1fr 0.5fr 7.5fr 0.5fr;
+  grid-template-rows: 0.5fr 0.5fr 10fr 0.5fr;
   grid-template-columns: 1fr 4fr;
   grid-template-areas: 'header header' 'userbar nav' 'main main' 'footer footer';
 }
 
 .header {
   background: var(--header-colour);
+  background-image: linear-gradient(var(--header-colour), var(--main-colour));
   color: var(--menu-text-colour);
   grid-area: header;
 }
@@ -88,14 +87,13 @@ textarea {
 .footer {
   background: var(--footer-colour);
   color: var(--menu-text-colour);
-
   grid-area: footer;
 }
 
 @media all and (min-width: 1000px) {
   .App {
-    grid-template-rows: 1fr 0.5fr 7.5fr 0.5fr;
-    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 0.75fr 0.5fr 7.5fr 0.5fr;
+    grid-template-columns: 1fr 5fr;
     grid-template-areas: 'header header' 'nav nav' 'sidebar main' 'footer footer';
   }
 

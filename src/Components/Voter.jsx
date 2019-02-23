@@ -8,15 +8,23 @@ class Voter extends Component {
     const { votes, user, resourceAuthor } = this.props;
     const { voteChange } = this.state;
     if (user.username === resourceAuthor) {
-      return <p className="voter">{votes} votes</p>;
+      return <p className="voter-votes-only">{votes} votes</p>;
     }
     return (
       <div className="voter">
-        <button onClick={() => this.vote(1)} disabled={voteChange > 0}>
+        <button
+          onClick={() => this.vote(1)}
+          disabled={voteChange > 0}
+          className="up"
+        >
           +
         </button>
-        {votes + voteChange} votes
-        <button onClick={() => this.vote(-1)} disabled={voteChange < 0}>
+        <div className="votes">{votes + voteChange} votes</div>
+        <button
+          onClick={() => this.vote(-1)}
+          disabled={voteChange < 0}
+          className="down"
+        >
           -
         </button>
       </div>

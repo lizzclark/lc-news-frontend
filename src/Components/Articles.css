@@ -4,6 +4,15 @@
 }
 
 .post-box-button {
-  height: 80px;
+  height: 50px;
+  font-size: 120%;
   margin: 5px;
+}
+
+.load-more {
+  margin: 10px 0px 40px 0px;
+}
+
+.nothing-here {
+  margin: 40px 0px 40px 0px;
 }

@@ -1,6 +1,6 @@
 .comment-card {
   display: grid;
-  grid-template-columns: 9em 3fr;
+  grid-template-columns: 9.5em 3fr;
   grid-template-rows: 1fr;
   grid-template-areas: 'userinfo body';
   margin: 20px;

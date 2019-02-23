@@ -74,9 +74,11 @@ class Articles extends Component {
             </div>
             <Newspaper articles={articles} user={user} />
             {hasAllArticles ? (
-              'No more articles'
+              <p className="nothing-here">No more articles</p>
             ) : (
-              <button onClick={this.loadMore}>Load more</button>
+              <button onClick={this.loadMore} className="load-more">
+                Load more
+              </button>
             )}
           </>
         ) : (

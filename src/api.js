@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const request = axios.create({ baseURL: 'https://lc-news.herokuapp.com/api' });
+const request = axios.create({
+  baseURL: 'https://lc-news.herokuapp.com/api'
+});
 
 const sortRefObj = {
   latest: 'created_at',

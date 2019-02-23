@@ -23,7 +23,7 @@ export const getTopics = async () => {
 };
 
 export const getUsers = async () => {
-  const response = await request.get(`/usersZZZ`);
+  const response = await request.get(`/users`);
   return response.data.users;
 };
 

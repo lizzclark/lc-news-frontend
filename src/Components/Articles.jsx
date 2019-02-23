@@ -23,13 +23,11 @@ class Articles extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const postBoxToggled =
-      prevState.displayPostBox !== this.state.displayPostBox;
     const categoryChanged = prevState.category !== this.state.category;
     const topicChanged = prevProps.topic !== this.props.topic;
     const nextPage = prevState.page !== this.state.page;
 
-    if (categoryChanged || topicChanged || postBoxToggled || nextPage) {
+    if (categoryChanged || topicChanged || nextPage) {
       this.fetchArticles();
     }
   }

@@ -3,9 +3,9 @@
   width: 95%;
   margin: 15px;
   padding: 15px;
-  border: 3px solid var(--header-colour);
+  border: 3px solid var(--border-colour);
   border-radius: 15px;
-  box-shadow: 5px 5px var(--header-colour);
+  box-shadow: 5px 5px var(--border-colour);
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;

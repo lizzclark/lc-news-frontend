@@ -1,5 +1,5 @@
 button {
-  background: var(--header-colour);
+  background: var(--contrast-colour);
   border: 1px solid rgba(1, 1, 1, 0.2);
   border-radius: 15px;
   font-size: 110%;

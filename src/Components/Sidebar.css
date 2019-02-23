@@ -12,7 +12,7 @@
   width: auto;
   background: #fff;
   margin: 3px;
-  border: 3px solid var(--header-colour);
+  border: 3px solid var(--border-colour);
   border-radius: 10px;
 }
 
@@ -30,7 +30,7 @@
     height: 200px;
     width: 200px;
     margin: 10px 0px;
-    border: 10px solid var(--header-colour);
+    border: 10px solid var(--border-colour);
     border-radius: 30px;
     background: #fff;
   }

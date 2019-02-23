@@ -1,14 +1,15 @@
 :root {
   --bg-colour: #ffffff;
-  --header-colour: #7e9ddb;
-  --nav-colour: #8366a6;
-  --main-colour: #afbfda;
-  --footer-colour: #8366a6;
-  --sidebar-colour: #a8aee0;
+  --border-colour: #ccc;
+  --contrast-colour: rgb(180, 181, 245);
+  --nav-colour: rgb(231, 231, 231);
+  --main-colour: #fff;
+  --footer-colour: rgb(231, 231, 231);
+  --sidebar-colour: rgb(255, 239, 177);
   --menu-text-colour: black;
-  --card-colour: #fff;
+  --card-colour: rgb(248, 245, 232);
   --link-colour: black;
-  --text-colour: #140e14;
+  --text-colour: #160f16;
   --voted-colour: rgb(132, 0, 255);
 }
 
@@ -27,7 +28,7 @@ a:hover {
 img {
   height: 200px;
   width: 200px;
-  border: 10px solid var(--header-colour);
+  border: 10px solid var(--border-colour);
   border-radius: 30px;
   background: #fff;
 }
@@ -51,8 +52,11 @@ textarea {
 }
 
 .header {
-  background: var(--header-colour);
-  background-image: linear-gradient(var(--header-colour), var(--main-colour));
+  background: var(--contrast-colour);
+  background-image: linear-gradient(
+    var(--border-colour),
+    var(--contrast-colour)
+  );
   color: var(--menu-text-colour);
   grid-area: header;
 }

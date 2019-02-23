@@ -9,16 +9,16 @@
   grid-template-columns: 1fr 9fr 1fr;
   grid-template-rows: 4fr 1fr;
   grid-template-areas: 'body-label body .' '. submit .';
-  border: 3px solid var(--header-colour);
+  border: 3px solid var(--border-colour);
   border-radius: 15px;
-  box-shadow: 5px 5px var(--header-colour);
+  box-shadow: 5px 5px var(--border-colour);
   background: rgba(1, 1, 1, 0.1);
   margin: 10px;
 }
 
 .comment-postbox button {
   grid-area: submit;
-  width: 5em;
+  width: 6em;
 }
 
 .comment-postbox .body-label {
@@ -36,9 +36,9 @@
   grid-template-columns: 1fr 9fr 1fr;
   grid-template-rows: 1fr 1fr 4fr 1fr;
   grid-template-areas: 'title-label title .' 'topic-label select .' 'body-label body .' '. submit .';
-  border: 3px solid var(--header-colour);
+  border: 3px solid var(--border-colour);
   border-radius: 15px;
-  box-shadow: 5px 5px var(--header-colour);
+  box-shadow: 5px 5px var(--border-colour);
   background: rgba(1, 1, 1, 0.1);
   margin: 10px;
 }
@@ -95,9 +95,9 @@
   grid-template-rows: 1fr 1.5fr 1fr;
   grid-template-columns: 0.5fr 0.3fr 3fr 0.5fr;
   grid-template-areas: 'slug-label slug slug .' 'desc-label desc desc .' '. button . .';
-  border: 3px solid var(--header-colour);
+  border: 3px solid var(--border-colour);
   border-radius: 15px;
-  box-shadow: 5px 5px var(--header-colour);
+  box-shadow: 5px 5px var(--border-colour);
   background: rgba(1, 1, 1, 0.1);
   padding: 10px;
   margin: 10px;

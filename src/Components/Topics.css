@@ -10,8 +10,8 @@
   background: var(--card-colour);
   padding: 10px;
   margin: 10px;
-  border: 3px solid var(--header-colour);
+  border: 3px solid var(--border-colour);
   border-radius: 15px;
-  box-shadow: 5px 5px var(--header-colour);
+  box-shadow: 5px 5px var(--border-colour);
   font-size: 180%;
 }

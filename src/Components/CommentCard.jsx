@@ -38,7 +38,7 @@ class CommentCard extends React.Component {
   handleClick = comment_id => {
     const { article_id } = this.props;
     api
-      .deleteComment({ article_id, comment_id })
+      .deleteResource({ article_id, comment_id })
       .then(res => this.setState({ isDeleted: true }))
       .catch(err => this.setState({ hasError: true }));
   };

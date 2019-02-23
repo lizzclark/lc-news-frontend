@@ -5,13 +5,10 @@ const request = axios.create({
 });
 
 export const getArticles = async ({ topic, category, direction, page }) => {
-  const response = topic
-    ? await request.get(`/topics/${topic}/articles`, {
-        params: { sort_by: category, p: page, order: direction }
-      })
-    : await request.get(`/articles`, {
-        params: { sort_by: category, p: page, order: direction }
-      });
+  const path = topic ? `/topics/${topic}/articles` : '/articles';
+  const response = await request.get(path, {
+    params: { sort_by: category, p: page, order: direction }
+  });
   return response.data;
 };
 
@@ -64,15 +61,11 @@ export const postComment = async ({ article_id, username, body }) => {
   return response;
 };
 
-export const deleteComment = async ({ comment_id, article_id }) => {
-  const response = await request.delete(
-    `/articles/${article_id}/comments/${comment_id}`
-  );
-  return response;
-};
-
-export const deleteArticle = async ({ article_id }) => {
-  const response = await request.delete(`/articles/${article_id}`);
+export const deleteResource = async ({ article_id, comment_id }) => {
+  const path = comment_id
+    ? `/articles/${article_id}/comments/${comment_id}`
+    : `/articles/${article_id}`;
+  const response = await request.delete(path);
   return response;
 };
 

@@ -73,7 +73,7 @@ class ArticlePage extends Component {
   deleteArticle = () => {
     const { article_id } = this.props;
     api
-      .deleteArticle({ article_id })
+      .deleteResource({ article_id })
       .then(res =>
         this.props.navigate('/', { state: { deletedArticle: true } })
       )

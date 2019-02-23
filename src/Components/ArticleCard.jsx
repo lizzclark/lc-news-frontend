@@ -54,7 +54,7 @@ class ArticleCard extends React.Component {
   handleClick = () => {
     const { article_id } = this.props.article;
     api
-      .deleteArticle({ article_id })
+      .deleteResource({ article_id })
       .then(res => this.setState({ isDeleted: true }))
       .catch(err => this.setState({ hasError: true }));
   };

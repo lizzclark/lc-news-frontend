@@ -15,6 +15,7 @@ class Articles extends Component {
     topics: [],
     isLoading: true,
     hasError: false,
+    hasTopicError: false,
     hasAllArticles: false
   };
 
@@ -40,6 +41,7 @@ class Articles extends Component {
       topics,
       isLoading,
       hasError,
+      hasTopicError,
       hasAllArticles,
       total_count
     } = this.state;
@@ -54,7 +56,7 @@ class Articles extends Component {
         <button onClick={this.togglePostBox} className="post-box-button">
           Post an article {displayPostBox ? '⬆' : '⬇'}
         </button>
-        {displayPostBox && (
+        {displayPostBox && !hasTopicError && (
           <PostBox
             topic={topic}
             topics={topics}
@@ -62,6 +64,7 @@ class Articles extends Component {
             togglePostBox={this.togglePostBox}
           />
         )}
+        {hasTopicError && <ErrorPage message="Can't load topics" />}
 
         {!isLoading && articles.length !== 0 ? (
           <>
@@ -111,7 +114,7 @@ class Articles extends Component {
           };
         });
       })
-      .catch(err => this.setState({ hasError: true }));
+      .catch(err => this.setState({ hasError: true, isLoading: false }));
   };
 
   changeSort = ({ target: { value } }) => {
@@ -140,7 +143,7 @@ class Articles extends Component {
             topics
           });
         })
-        .catch(err => this.setState({ hasError: true }));
+        .catch(err => this.setState({ hasTopicError: true, isLoading: false }));
     } else this.setState({ displayPostBox: false });
   };
 

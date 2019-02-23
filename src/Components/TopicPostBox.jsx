@@ -11,7 +11,10 @@ class TopicPostBox extends React.Component {
     const { description, slug, hasError } = this.state;
     if (hasError)
       return (
-        <ErrorPage message={"Can't add topic. Maybe it already exists?"} />
+        <ErrorPage
+          message={"Can't add topic. Maybe it already exists?"}
+          isLinkedHome
+        />
       );
     return (
       <>

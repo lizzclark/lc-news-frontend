@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import CommentCard from './CommentCard';
 import CommentPostBox from './CommentPostBox';
 import * as api from '../api';
+import ErrorPage from './ErrorPage';
 
 class Comments extends Component {
   state = {
     comments: [],
     displayCommentBox: false,
     isLoading: true,
-    page: 1
+    page: 1,
+    hasError: false
   };
 
   componentDidMount() {
@@ -28,9 +30,11 @@ class Comments extends Component {
       comments,
       displayCommentBox,
       isLoading,
-      hasAllComments
+      hasAllComments,
+      hasError
     } = this.state;
     const { article_id, user, comment_count } = this.props;
+    if (hasError) return <ErrorPage message="Can't load comments" />;
     if (isLoading) return <h2>Loading comments...</h2>;
     return (
       <div className="comments">
@@ -96,7 +100,7 @@ class Comments extends Component {
           };
         });
       })
-      .catch(err => this.setState({ comments: [], isLoading: false }));
+      .catch(err => this.setState({ isLoading: false, hasError: true }));
   };
 
   loadMore = () => {

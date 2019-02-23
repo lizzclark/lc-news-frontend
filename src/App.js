@@ -23,15 +23,18 @@ class App extends Component {
   }
   render() {
     const { user, hasError } = this.state;
-    if (hasError) return <ErrorPage message={"Can't load app"} />;
     return (
       <div className="App">
         <Header />
         <Nav user={user} />
-        <Auth login={this.setUser} user={user}>
-          <Main className="main" user={user} />
-          <Sidebar user={user} logout={this.clearUser} />
-        </Auth>
+        {hasError ? (
+          <ErrorPage message={"Can't load articles"} />
+        ) : (
+          <Auth login={this.setUser} user={user}>
+            <Main className="main" user={user} />
+            <Sidebar user={user} logout={this.clearUser} />
+          </Auth>
+        )}
         <Footer />
       </div>
     );

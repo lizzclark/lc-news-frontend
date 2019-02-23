@@ -12,7 +12,8 @@ class Topics extends Component {
   }
   render() {
     const { topics, isLoading, hasError } = this.state;
-    if (hasError) return <ErrorPage message={"Can't load topics"} />;
+    if (hasError)
+      return <ErrorPage message={"Can't load topics"} isLinkedHome />;
     if (isLoading) return <h2>Loading topics...</h2>;
     const topicSlugs = topics.map(topic => topic.slug).sort();
     return (

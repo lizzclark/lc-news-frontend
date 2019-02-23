@@ -28,6 +28,7 @@ class ArticlePage extends Component {
           message={
             hasDeleteError ? "Can't delete article..." : "Can't load article..."
           }
+          isLinkedHome
         />
       );
     if (isLoading) return <h2>Loading article...</h2>;

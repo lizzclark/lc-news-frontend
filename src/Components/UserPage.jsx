@@ -12,7 +12,8 @@ class UserPage extends Component {
   render() {
     const { articles, total_count, isLoading, hasError } = this.state;
     const { user, username } = this.props;
-    if (hasError) return <ErrorPage message={"Can't load articles"} />;
+    if (hasError)
+      return <ErrorPage message={"Can't load articles"} isLinkedHome />;
     if (isLoading) return <h2>Loading articles...</h2>;
     return (
       <div>

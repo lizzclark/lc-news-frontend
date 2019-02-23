@@ -12,7 +12,8 @@ class Users extends Component {
   render() {
     const { users, isLoading, hasError } = this.state;
     const { isLinked } = this.props;
-    if (hasError) return <ErrorPage message={"Can't load users"} />;
+    if (hasError)
+      return <ErrorPage message={"Can't load users"} isLinkedHome />;
     if (isLoading)
       return (
         <div className="users">

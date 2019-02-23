@@ -55,7 +55,8 @@ class TopicPostBox extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { slug, description } = this.state;
+    let { slug, description } = this.state;
+    slug = slug.trim('').toLowerCase();
     api
       .postTopic({ slug, description })
       .then(res => navigate(`/topics/${slug}`))

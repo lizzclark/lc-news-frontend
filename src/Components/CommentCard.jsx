@@ -2,6 +2,7 @@ import React from 'react';
 import * as api from '../api';
 import './CommentCard.css';
 import TimeAgo from 'react-timeago';
+import { Link } from '@reach/router';
 import Voter from './Voter';
 import ErrorPage from './ErrorPage';
 
@@ -15,7 +16,9 @@ class CommentCard extends React.Component {
     return (
       <div className="comment-card">
         <div className="userinfo">
-          <h3>{comment.author}</h3>
+          <Link to={`/users/${comment.author}`}>
+            <h3>{comment.author}</h3>
+          </Link>
           <TimeAgo date={comment.created_at} live={false} />
           <Voter
             user={user}

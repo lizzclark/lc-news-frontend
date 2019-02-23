@@ -3,7 +3,7 @@ import Users from './Users';
 import './Auth.css';
 
 class Auth extends Component {
-  state = { username: '' };
+  state = { username: 'happyamy2016' };
 
   render() {
     const { user, children } = this.props;

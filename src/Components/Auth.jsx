@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Users from './Users';
+import './Auth.css';
 
 class Auth extends Component {
   state = { username: '' };

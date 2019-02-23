@@ -1,0 +1,5 @@
+.auth input,
+.auth form {
+  font-weight: bold;
+  margin: 10px;
+}

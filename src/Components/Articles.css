@@ -1,6 +1,9 @@
-.main .sort-buttons {
+.main .sort-input {
   margin: 10px;
   font-size: 120%;
+}
+.main .sort-input label {
+  margin: 10px;
 }
 
 .post-box-button {

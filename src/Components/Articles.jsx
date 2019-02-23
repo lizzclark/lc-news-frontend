@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import Newspaper from './Newspaper';
-import SortButton from './SortButton';
 import PostBox from './PostBox';
 import ErrorPage from './ErrorPage';
 import './Articles.css';
@@ -9,7 +8,8 @@ import './Articles.css';
 class Articles extends Component {
   state = {
     articles: [],
-    category: 'date',
+    category: 'created_at',
+    direction: 'desc',
     page: 1,
     displayPostBox: false,
     topics: [],
@@ -25,9 +25,10 @@ class Articles extends Component {
   componentDidUpdate(prevProps, prevState) {
     const categoryChanged = prevState.category !== this.state.category;
     const topicChanged = prevProps.topic !== this.props.topic;
+    const sortChanged = prevState.direction !== this.state.direction;
     const nextPage = prevState.page !== this.state.page;
 
-    if (categoryChanged || topicChanged || nextPage) {
+    if (categoryChanged || topicChanged || sortChanged || nextPage) {
       this.fetchArticles();
     }
   }
@@ -64,11 +65,16 @@ class Articles extends Component {
 
         {!isLoading && articles.length !== 0 ? (
           <>
-            <div className="sort-buttons">
-              <span>Sort by: </span>
-              <SortButton category="latest" sortBy={this.sortBy} />
-              <SortButton category="comments" sortBy={this.sortBy} />
-              <SortButton category="votes" sortBy={this.sortBy} />
+            <div className="sort-input">
+              <label for="sort-by">Sort by:</label>
+              <select onChange={this.changeSort}>
+                <option name="latest">newest</option>
+                <option name="latest">oldest</option>
+                <option name="latest">comments high-low</option>
+                <option name="latest">comments low-high</option>
+                <option name="latest">votes high-low</option>
+                <option name="latest">votes low-high</option>
+              </select>
             </div>
             <Newspaper articles={articles} user={user} />
             {hasAllArticles ? (
@@ -89,10 +95,10 @@ class Articles extends Component {
   }
 
   fetchArticles = () => {
-    const { category, page } = this.state;
+    const { category, page, direction } = this.state;
     const { topic } = this.props;
     return api
-      .getArticles({ category, topic, page })
+      .getArticles({ category, topic, page, direction })
       .then(({ articles, total_count }) => {
         return this.setState(prevState => {
           const newArticlesLength = prevState.articles.length + articles.length;
@@ -108,8 +114,20 @@ class Articles extends Component {
       .catch(err => this.setState({ hasError: true }));
   };
 
-  sortBy = category => {
-    this.setState({ category, page: 1 });
+  changeSort = ({ target: { value } }) => {
+    const sortRefObj = {
+      newest: ['created_at', 'desc'],
+      oldest: ['created_at', 'asc'],
+      'comments high-low': ['comment_count', 'desc'],
+      'comments low-high': ['comment_count', 'asc'],
+      'votes low-high': ['votes', 'asc'],
+      'votes high-low': ['votes', 'desc']
+    };
+    return this.setState({
+      category: sortRefObj[value][0],
+      direction: sortRefObj[value][1],
+      page: 1
+    });
   };
 
   togglePostBox = () => {

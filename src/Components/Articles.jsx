@@ -21,6 +21,7 @@ class Articles extends Component {
 
   componentDidMount() {
     this.fetchArticles();
+    this.fetchTopics();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -117,6 +118,13 @@ class Articles extends Component {
       .catch(err => this.setState({ hasError: true, isLoading: false }));
   };
 
+  fetchTopics = () => {
+    return api
+      .getTopics()
+      .then(topics => this.setState({ topics }))
+      .catch(err => this.setState({ hasTopicError: true }));
+  };
+
   changeSort = ({ target: { value } }) => {
     const sortRefObj = {
       newest: ['created_at', 'desc'],
@@ -134,17 +142,10 @@ class Articles extends Component {
   };
 
   togglePostBox = () => {
-    if (!this.state.displayPostBox) {
-      return api
-        .getTopics()
-        .then(topics => {
-          this.setState({
-            displayPostBox: true,
-            topics
-          });
-        })
-        .catch(err => this.setState({ hasTopicError: true, isLoading: false }));
-    } else this.setState({ displayPostBox: false });
+    const { displayPostBox } = this.state;
+    return displayPostBox
+      ? this.setState({ displayPostBox: false })
+      : this.setState({ displayPostBox: true });
   };
 
   loadMore = () => {

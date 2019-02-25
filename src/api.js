@@ -4,10 +4,20 @@ const request = axios.create({
   baseURL: 'https://lc-news.herokuapp.com/api'
 });
 
-export const getArticles = async ({ topic, category, direction, page }) => {
+export const getArticles = async ({ topic, sortOption, page }) => {
+  const sortRefObj = {
+    newest: ['created_at', 'desc'],
+    oldest: ['created_at', 'asc'],
+    'comments high-low': ['comment_count', 'desc'],
+    'comments low-high': ['comment_count', 'asc'],
+    'votes low-high': ['votes', 'asc'],
+    'votes high-low': ['votes', 'desc']
+  };
+  const sort_by = sortRefObj[sortOption][0];
+  const order = sortRefObj[sortOption][1];
   const path = topic ? `/topics/${topic}/articles` : '/articles';
   const response = await request.get(path, {
-    params: { sort_by: category, p: page, order: direction }
+    params: { sort_by, p: page, order }
   });
   return response.data;
 };

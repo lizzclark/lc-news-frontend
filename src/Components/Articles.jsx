@@ -8,8 +8,7 @@ import './Articles.css';
 class Articles extends Component {
   state = {
     articles: [],
-    category: 'created_at',
-    direction: 'desc',
+    sortOption: 'newest',
     page: 1,
     displayPostBox: false,
     topics: [],
@@ -25,12 +24,11 @@ class Articles extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const categoryChanged = prevState.category !== this.state.category;
+    const sortChanged = prevState.sortOption !== this.state.sortOption;
     const topicChanged = prevProps.topic !== this.props.topic;
-    const sortChanged = prevState.direction !== this.state.direction;
     const nextPage = prevState.page !== this.state.page;
 
-    if (categoryChanged || topicChanged || sortChanged || nextPage) {
+    if (topicChanged || sortChanged || nextPage) {
       this.fetchArticles();
     }
   }
@@ -47,10 +45,11 @@ class Articles extends Component {
       total_count
     } = this.state;
     const { topic, user } = this.props;
-    console.log(this.state);
+    const justDeleted = this.props.location.state.deletedArticle;
     if (hasError) return <ErrorPage message={"Can't load articles"} />;
     return (
       <>
+        {justDeleted && <h3>Successfully deleted.</h3>}
         <h2>
           Viewing {total_count} articles{topic && ` in ${topic}`}
         </h2>
@@ -100,10 +99,10 @@ class Articles extends Component {
   }
 
   fetchArticles = () => {
-    const { category, page, direction } = this.state;
+    const { sortOption, page } = this.state;
     const { topic } = this.props;
     return api
-      .getArticles({ category, topic, page, direction })
+      .getArticles({ topic, page, sortOption })
       .then(({ articles, total_count }) => {
         return this.setState(prevState => {
           const newArticlesLength =
@@ -130,17 +129,8 @@ class Articles extends Component {
   };
 
   changeSort = ({ target: { value } }) => {
-    const sortRefObj = {
-      newest: ['created_at', 'desc'],
-      oldest: ['created_at', 'asc'],
-      'comments high-low': ['comment_count', 'desc'],
-      'comments low-high': ['comment_count', 'asc'],
-      'votes low-high': ['votes', 'asc'],
-      'votes high-low': ['votes', 'desc']
-    };
     return this.setState({
-      category: sortRefObj[value][0],
-      direction: sortRefObj[value][1],
+      sortOption: value,
       page: 1
     });
   };

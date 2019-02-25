@@ -13,7 +13,9 @@ export const getArticles = async ({ topic, category, direction, page }) => {
 };
 
 export const getUserArticles = async username => {
-  const response = await request.get(`/users/${username}/articles`);
+  const response = await request.get(`/users/${username}/articles`, {
+    params: { limit: 100 }
+  });
   return response.data;
 };
 

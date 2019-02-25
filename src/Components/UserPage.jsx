@@ -21,11 +21,7 @@ class UserPage extends Component {
         <p>
           {username} has written {total_count} articles
         </p>
-        {articles.length !== 0 ? (
-          <Newspaper articles={articles} user={user} />
-        ) : (
-          'Loading...'
-        )}
+        <Newspaper articles={articles} user={user} />
       </div>
     );
   }

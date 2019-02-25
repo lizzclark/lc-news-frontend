@@ -1,22 +1,19 @@
 import React from 'react';
 import './PostBox.css';
 import ErrorPage from './ErrorPage';
+import { navigate } from '@reach/router';
 import * as api from '../api';
 
 class PostBox extends React.Component {
   state = {
     title: '',
-    selectedTopic: this.props.topic,
+    selectedTopic: 'coding',
     body: '',
     hasError: false
   };
 
-  componentDidMount() {
-    if (!this.state.selectedTopic) this.setState({ selectedTopic: 'coding' });
-  }
-
   render() {
-    const { topics } = this.props;
+    const { topics, topic } = this.props;
     const { title, body, selectedTopic, hasError } = this.state;
     if (hasError) return <ErrorPage message={"Can't post article."} />;
     return (
@@ -39,7 +36,7 @@ class PostBox extends React.Component {
         <select
           onChange={this.handleTopicInput}
           name="topic"
-          value={selectedTopic}
+          value={topic || selectedTopic}
         >
           {topics.map(topicObj => {
             return (
@@ -78,15 +75,20 @@ class PostBox extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { title, body } = this.state;
-    const topic = this.state.selectedTopic;
+    const { title, body, selectedTopic } = this.state;
     const { username } = this.props.user;
-    const { togglePostBox } = this.props;
+    const { togglePostBox, topic } = this.props;
     return api
-      .postArticle({ title, topic, body, username })
-      .then(res => {
+      .postArticle({
+        title,
+        topic: topic || selectedTopic,
+        body,
+        username
+      })
+      .then(({ article }) => {
         togglePostBox();
-        return this.setState({ title: '', body: '', topic: '' });
+        this.setState({ title: '', body: '', topic: '' });
+        navigate(`/articles/${article.article_id}`);
       })
       .catch(err => this.setState({ hasError: true }));
   };

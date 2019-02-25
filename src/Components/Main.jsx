@@ -4,6 +4,7 @@ import Topics from './Topics';
 import Users from './Users';
 import ArticlePage from './ArticlePage';
 import UserPage from './UserPage';
+import ErrorPage from './ErrorPage';
 import { Router } from '@reach/router';
 
 class Main extends React.Component {
@@ -21,6 +22,7 @@ class Main extends React.Component {
         <Topics path="/topics" />
         <Users path="/users" isLinked={true} />
         <UserPage path="/users/:username" user={user} />
+        <ErrorPage statusCode={404} isLinkedHome default />
       </Router>
     );
   }

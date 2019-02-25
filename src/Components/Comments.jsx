@@ -60,14 +60,16 @@ class Comments extends Component {
               article_id={article_id}
             />
           ))}
-        {hasAllComments && <p className="nothing-here">No more comments</p>}
+        {hasAllComments && comments.length > 0 && (
+          <p className="nothing-here">No more comments</p>
+        )}
+        {hasAllComments && comments.length === 0 && (
+          <p className="nothing-here">No comments yet</p>
+        )}
         {!hasAllComments && comments.length !== 0 && (
           <button onClick={this.loadMore} className="load-more">
             Load more
           </button>
-        )}
-        {comments.length === 0 && isLoading === false && (
-          <p className="nothing-here">No comments yet</p>
         )}
       </div>
     );

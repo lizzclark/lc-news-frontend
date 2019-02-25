@@ -3,6 +3,20 @@ import { Link } from '@reach/router';
 import './Sidebar.css';
 
 const Sidebar = ({ logout, user: { username, name, avatar_url } }) => {
+  if (!username)
+    return (
+      <section className="sidebar">
+        <p>
+          Hi, visitor!{' '}
+          <span role="img" aria-label="wave">
+            👋
+          </span>
+        </p>
+        <p className="lg-screen-hide">
+          You'll have to log in to view articles.
+        </p>
+      </section>
+    );
   return (
     <section className="sidebar">
       <p className="lg-screen-hide">

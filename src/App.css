@@ -53,10 +53,6 @@ textarea {
 
 .header {
   background: var(--contrast-colour);
-  background-image: linear-gradient(
-    var(--border-colour),
-    var(--contrast-colour)
-  );
   color: var(--menu-text-colour);
   grid-area: header;
 }
@@ -94,6 +90,12 @@ textarea {
   grid-area: footer;
 }
 
+header,
+nav,
+footer {
+  font-size: 100%;
+}
+
 @media all and (min-width: 1000px) {
   .App {
     grid-template-rows: 0.75fr 0.5fr 7.5fr 0.5fr;
@@ -110,5 +112,11 @@ textarea {
 
   .sidebar .lg-screen-hide {
     display: block;
+  }
+
+  header,
+  nav,
+  footer {
+    font-size: 120%;
   }
 }

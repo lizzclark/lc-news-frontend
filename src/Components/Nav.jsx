@@ -16,7 +16,9 @@ class Nav extends Component {
     } else
       return (
         <nav className="nav">
-          <span>Welcome, visitor! You'll have to log in to view articles.</span>
+          <span>
+            Read articles, browse topics, comment and vote on the latest news
+          </span>
         </nav>
       );
   }

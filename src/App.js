@@ -27,12 +27,12 @@ class App extends Component {
       <div className="App">
         <Header />
         <Nav user={user} />
+        <Sidebar user={user} logout={this.clearUser} />
         {hasError ? (
           <ErrorPage message={"Can't load articles"} />
         ) : (
           <Auth login={this.setUser} user={user}>
             <Main className="main" user={user} />
-            <Sidebar user={user} logout={this.clearUser} />
           </Auth>
         )}
         <Footer />

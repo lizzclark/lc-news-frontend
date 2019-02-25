@@ -5,6 +5,8 @@
   flex-flow: row nowrap;
   justify-content: space-evenly;
   align-items: center;
+  font-size: 110%;
+  font-weight: bold;
 }
 
 .sidebar img {
@@ -33,10 +35,5 @@
     border: 10px solid var(--border-colour);
     border-radius: 30px;
     background: #fff;
-  }
-
-  .lg-screen-hide {
-    font-weight: bold;
-    font-size: 120%;
   }
 }

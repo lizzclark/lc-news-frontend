@@ -9,7 +9,6 @@
 .nav a {
   color: var(--link-colour);
   text-decoration: none;
-  font-size: 120%;
 }
 
 .nav a:hover {

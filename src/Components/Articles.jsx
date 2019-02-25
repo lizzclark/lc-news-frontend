@@ -47,6 +47,7 @@ class Articles extends Component {
       total_count
     } = this.state;
     const { topic, user } = this.props;
+    console.log(this.state);
     if (hasError) return <ErrorPage message={"Can't load articles"} />;
     return (
       <>
@@ -67,7 +68,7 @@ class Articles extends Component {
         )}
         {hasTopicError && <ErrorPage message="Can't load topics" />}
 
-        {!isLoading && articles.length !== 0 ? (
+        {!isLoading ? (
           <>
             <div className="sort-input">
               <label for="sort-by">Sort by:</label>
@@ -81,9 +82,7 @@ class Articles extends Component {
               </select>
             </div>
             <Newspaper articles={articles} user={user} />
-            {hasAllArticles ? (
-              <p className="nothing-here">No more articles</p>
-            ) : (
+            {!hasAllArticles && (
               <button onClick={this.loadMore} className="load-more">
                 Load more
               </button>
@@ -93,7 +92,12 @@ class Articles extends Component {
           <h2>Loading articles...</h2>
         )}
 
-        {articles.length === 0 && !isLoading && <p>No articles yet.</p>}
+        {articles.length === 0 && !isLoading && hasAllArticles && (
+          <p>No articles yet.</p>
+        )}
+        {!isLoading && hasAllArticles && articles.length !== 0 && (
+          <p>No more articles.</p>
+        )}
       </>
     );
   }
@@ -105,7 +109,10 @@ class Articles extends Component {
       .getArticles({ category, topic, page, direction })
       .then(({ articles, total_count }) => {
         return this.setState(prevState => {
-          const newArticlesLength = prevState.articles.length + articles.length;
+          const newArticlesLength =
+            page === 1
+              ? articles.length
+              : prevState.articles.length + articles.length;
           return {
             articles:
               page === 1 ? articles : [...prevState.articles, ...articles],

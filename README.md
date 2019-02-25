@@ -4,6 +4,10 @@ A fully functional, responsive frontend to the LC News API. Read articles, brows
 
 ## Getting Started
 
+### Prerequisites
+
+- Node.js
+
 To get the project up and running locally:
 
 - Clone this repo and then run the command `npm install` from the root directory. This will install all the necessary dependencies.

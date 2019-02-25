@@ -6,6 +6,10 @@
   margin: 10px;
 }
 
+.main select {
+  background: rgba(0, 1, 1, 0.1);
+}
+
 .post-box-button {
   height: 50px;
   font-size: 120%;

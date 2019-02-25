@@ -92,8 +92,10 @@ textarea {
 
 header,
 nav,
-footer {
-  font-size: 100%;
+footer,
+.sidebar button {
+  font-size: 90%;
+  padding: 3px;
 }
 
 @media all and (min-width: 1000px) {
@@ -116,7 +118,8 @@ footer {
 
   header,
   nav,
-  footer {
+  footer,
+  .sidebar button {
     font-size: 120%;
   }
 }

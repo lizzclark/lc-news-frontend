@@ -45,7 +45,9 @@ class Articles extends Component {
       total_count
     } = this.state;
     const { topic, user } = this.props;
-    const justDeleted = this.props.location.state.deletedArticle;
+    let justDeleted = this.props.location.state
+      ? this.props.location.state.deletedArticle
+      : false;
     if (hasError) return <ErrorPage message={"Can't load articles"} />;
     return (
       <>

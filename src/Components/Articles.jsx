@@ -54,7 +54,6 @@ class Articles extends Component {
         <h2>
           Viewing {total_count} articles{topic && ` in ${topic}`}
         </h2>
-
         <button onClick={this.togglePostBox} className="post-box-button">
           Post an article {displayPostBox ? '⬆' : '⬇'}
         </button>
@@ -68,7 +67,8 @@ class Articles extends Component {
         )}
         {hasTopicError && <ErrorPage message="Can't load topics" />}
 
-        {!isLoading ? (
+        {isLoading && <h2>Loading articles...</h2>}
+        {!isLoading && articles.length > 0 && (
           <>
             <div className="sort-input">
               <label for="sort-by">Sort by:</label>
@@ -88,14 +88,11 @@ class Articles extends Component {
               </button>
             )}
           </>
-        ) : (
-          <h2>Loading articles...</h2>
         )}
-
-        {articles.length === 0 && !isLoading && hasAllArticles && (
+        {!isLoading && articles.length === 0 && hasAllArticles && (
           <p>No articles yet.</p>
         )}
-        {!isLoading && hasAllArticles && articles.length !== 0 && (
+        {!isLoading && articles.length !== 0 && hasAllArticles && (
           <p>No more articles.</p>
         )}
       </>

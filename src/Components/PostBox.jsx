@@ -7,13 +7,13 @@ import * as api from '../api';
 class PostBox extends React.Component {
   state = {
     title: '',
-    selectedTopic: 'coding',
+    selectedTopic: this.props.topic || 'coding',
     body: '',
     hasError: false
   };
 
   render() {
-    const { topics, topic } = this.props;
+    const { topics } = this.props;
     const { title, body, selectedTopic, hasError } = this.state;
     if (hasError) return <ErrorPage message={"Can't post article."} />;
     return (
@@ -36,7 +36,7 @@ class PostBox extends React.Component {
         <select
           onChange={this.handleTopicInput}
           name="topic"
-          value={topic || selectedTopic}
+          value={selectedTopic}
         >
           {topics.map(topicObj => {
             return (
@@ -77,11 +77,11 @@ class PostBox extends React.Component {
     event.preventDefault();
     const { title, body, selectedTopic } = this.state;
     const { username } = this.props.user;
-    const { togglePostBox, topic } = this.props;
+    const { togglePostBox } = this.props;
     return api
       .postArticle({
         title,
-        topic: topic || selectedTopic,
+        topic: selectedTopic,
         body,
         username
       })
